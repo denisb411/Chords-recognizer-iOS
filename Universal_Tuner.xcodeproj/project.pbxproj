@@ -14,6 +14,12 @@
 		D40E3C461E816C43009B4B40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40E3C441E816C43009B4B40 /* LaunchScreen.storyboard */; };
 		D40E3C511E816C43009B4B40 /* Universal_TunerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E3C501E816C43009B4B40 /* Universal_TunerTests.swift */; };
 		D40E3C5C1E816C43009B4B40 /* Universal_TunerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E3C5B1E816C43009B4B40 /* Universal_TunerUITests.swift */; };
+		D40E3C6B1E816CFA009B4B40 /* AnalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E3C6A1E816CFA009B4B40 /* AnalogView.swift */; };
+		D40E3C6E1E817117009B4B40 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E3C6D1E817117009B4B40 /* Note.swift */; };
+		D40E3C701E817131009B4B40 /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E3C6F1E817131009B4B40 /* Pitch.swift */; };
+		D40E3C721E817158009B4B40 /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E3C711E817158009B4B40 /* Tuner.swift */; };
+		D40E3C741E8171BA009B4B40 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40E3C731E8171BA009B4B40 /* AudioKit.framework */; };
+		D40E3C751E8171BA009B4B40 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D40E3C731E8171BA009B4B40 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +39,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D40E3C761E8171BB009B4B40 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D40E3C751E8171BA009B4B40 /* AudioKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D40E3C381E816C43009B4B40 /* Universal_Tuner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Universal_Tuner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40E3C3B1E816C43009B4B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +67,11 @@
 		D40E3C571E816C43009B4B40 /* Universal_TunerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Universal_TunerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40E3C5B1E816C43009B4B40 /* Universal_TunerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Universal_TunerUITests.swift; sourceTree = "<group>"; };
 		D40E3C5D1E816C43009B4B40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D40E3C6A1E816CFA009B4B40 /* AnalogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogView.swift; sourceTree = "<group>"; };
+		D40E3C6D1E817117009B4B40 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		D40E3C6F1E817131009B4B40 /* Pitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pitch.swift; sourceTree = "<group>"; };
+		D40E3C711E817158009B4B40 /* Tuner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
+		D40E3C731E8171BA009B4B40 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40E3C741E8171BA009B4B40 /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +103,7 @@
 		D40E3C2F1E816C43009B4B40 = {
 			isa = PBXGroup;
 			children = (
+				D40E3C731E8171BA009B4B40 /* AudioKit.framework */,
 				D40E3C3A1E816C43009B4B40 /* Universal_Tuner */,
 				D40E3C4F1E816C43009B4B40 /* Universal_TunerTests */,
 				D40E3C5A1E816C43009B4B40 /* Universal_TunerUITests */,
@@ -97,9 +124,9 @@
 		D40E3C3A1E816C43009B4B40 /* Universal_Tuner */ = {
 			isa = PBXGroup;
 			children = (
+				D40E3C6C1E8170AC009B4B40 /* Logic */,
+				D40E3C691E816CD2009B4B40 /* UI */,
 				D40E3C3B1E816C43009B4B40 /* AppDelegate.swift */,
-				D40E3C3D1E816C43009B4B40 /* ViewController.swift */,
-				D40E3C3F1E816C43009B4B40 /* Main.storyboard */,
 				D40E3C421E816C43009B4B40 /* Assets.xcassets */,
 				D40E3C441E816C43009B4B40 /* LaunchScreen.storyboard */,
 				D40E3C471E816C43009B4B40 /* Info.plist */,
@@ -125,6 +152,26 @@
 			path = Universal_TunerUITests;
 			sourceTree = "<group>";
 		};
+		D40E3C691E816CD2009B4B40 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D40E3C3D1E816C43009B4B40 /* ViewController.swift */,
+				D40E3C6A1E816CFA009B4B40 /* AnalogView.swift */,
+				D40E3C3F1E816C43009B4B40 /* Main.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		D40E3C6C1E8170AC009B4B40 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				D40E3C6D1E817117009B4B40 /* Note.swift */,
+				D40E3C6F1E817131009B4B40 /* Pitch.swift */,
+				D40E3C711E817158009B4B40 /* Tuner.swift */,
+			);
+			name = Logic;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +182,7 @@
 				D40E3C341E816C43009B4B40 /* Sources */,
 				D40E3C351E816C43009B4B40 /* Frameworks */,
 				D40E3C361E816C43009B4B40 /* Resources */,
+				D40E3C761E8171BB009B4B40 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -259,8 +307,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40E3C6B1E816CFA009B4B40 /* AnalogView.swift in Sources */,
 				D40E3C3E1E816C43009B4B40 /* ViewController.swift in Sources */,
 				D40E3C3C1E816C43009B4B40 /* AppDelegate.swift in Sources */,
+				D40E3C6E1E817117009B4B40 /* Note.swift in Sources */,
+				D40E3C721E817158009B4B40 /* Tuner.swift in Sources */,
+				D40E3C701E817131009B4B40 /* Pitch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +462,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/AudioKit-iOS",
+				);
 				INFOPLIST_FILE = Universal_Tuner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.denisb411.Universal-Tuner";
@@ -422,6 +478,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/AudioKit-iOS",
+				);
 				INFOPLIST_FILE = Universal_Tuner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.denisb411.Universal-Tuner";
