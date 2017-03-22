@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class ViewController: UIViewController, TunerDelegate {
     
     let tuner = Tuner()
@@ -16,7 +17,14 @@ class ViewController: UIViewController, TunerDelegate {
     @IBOutlet weak var amplitudeLabel: UILabel!
     @IBOutlet weak var nearestPitch: UILabel!
     @IBOutlet weak var distanceFromNearest: UILabel!
+    
+    @IBOutlet weak var analogView: AnalogView!
+    
+    @IBOutlet weak var containerView: UIView!
+    
    
+    
+//    let analogView = AnalogView(frame: CGRect(x: 20, y: 200, width: 340, height: 300))
     
 
     override func viewDidLoad() {
@@ -25,6 +33,16 @@ class ViewController: UIViewController, TunerDelegate {
         
         tuner.start()
         tuner.delegate = self
+        
+        
+//        analogView.frame = CGRect(
+//            origin: CGPoint(x: round(self.view.bounds.width - 245) / 2,
+//                            y: round(self.view.bounds.height - 245) / 2),
+//            size:   CGSize(width: 245, height: 245)
+//        )
+        
+        
+//        self.view.addSubview(analogView)
     }
     
     func updateUI() {
@@ -45,7 +63,10 @@ class ViewController: UIViewController, TunerDelegate {
         nearestPitch.text = String(pitch.description)
         distanceFromNearest.text = String(format:"%.4f", abs(distance))
         
+        
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
