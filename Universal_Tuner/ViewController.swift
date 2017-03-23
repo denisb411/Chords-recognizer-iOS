@@ -22,7 +22,11 @@ class ViewController: UIViewController, TunerDelegate {
     
     @IBOutlet weak var containerView: UIView!
     
-   
+    @IBOutlet weak var prevPitch: UILabel!
+    @IBOutlet weak var nextPitch: UILabel!
+    @IBOutlet weak var currectPitch: UILabel!
+    
+    
     
 //    let analogView = AnalogView(frame: CGRect(x: 20, y: 200, width: 340, height: 300))
     
@@ -33,6 +37,8 @@ class ViewController: UIViewController, TunerDelegate {
         
         tuner.start()
         tuner.delegate = self
+        
+        
         
         
 //        analogView.frame = CGRect(
@@ -54,7 +60,7 @@ class ViewController: UIViewController, TunerDelegate {
     func tunerDidMeasurePitch(_ pitch: Pitch, withDistance distance: Double,
                               amplitude: Double, frequency: Double) {
         
-        if amplitude < 0.1 {
+        if amplitude < 0.05 {
             return
         }
         
@@ -62,6 +68,11 @@ class ViewController: UIViewController, TunerDelegate {
         amplitudeLabel.text = String(format:"%.4f", amplitude)
         nearestPitch.text = String(pitch.description)
         distanceFromNearest.text = String(format:"%.4f", abs(distance))
+        
+        currectPitch.text = String(pitch.description)
+        prevPitch.text = String((pitch - 1).description)
+        nextPitch.text = String((pitch + 1).description)
+        
         
         
     }

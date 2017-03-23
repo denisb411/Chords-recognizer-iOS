@@ -20,6 +20,7 @@
 		D40E3C721E817158009B4B40 /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E3C711E817158009B4B40 /* Tuner.swift */; };
 		D40E3C741E8171BA009B4B40 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40E3C731E8171BA009B4B40 /* AudioKit.framework */; };
 		D40E3C751E8171BA009B4B40 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D40E3C731E8171BA009B4B40 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D494847D1E833C790074A5E8 /* PointerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D494847C1E833C790074A5E8 /* PointerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		D40E3C6F1E817131009B4B40 /* Pitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pitch.swift; sourceTree = "<group>"; };
 		D40E3C711E817158009B4B40 /* Tuner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
 		D40E3C731E8171BA009B4B40 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
+		D494847C1E833C790074A5E8 /* PointerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			children = (
 				D40E3C3D1E816C43009B4B40 /* ViewController.swift */,
 				D40E3C6A1E816CFA009B4B40 /* AnalogView.swift */,
+				D494847C1E833C790074A5E8 /* PointerView.swift */,
 				D40E3C3F1E816C43009B4B40 /* Main.storyboard */,
 			);
 			name = UI;
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D40E3C6B1E816CFA009B4B40 /* AnalogView.swift in Sources */,
+				D494847D1E833C790074A5E8 /* PointerView.swift in Sources */,
 				D40E3C3E1E816C43009B4B40 /* ViewController.swift in Sources */,
 				D40E3C3C1E816C43009B4B40 /* AppDelegate.swift in Sources */,
 				D40E3C6E1E817117009B4B40 /* Note.swift in Sources */,
@@ -563,6 +567,7 @@
 				D40E3C621E816C43009B4B40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D40E3C631E816C43009B4B40 /* Build configuration list for PBXNativeTarget "Universal_TunerTests" */ = {
 			isa = XCConfigurationList;
@@ -571,6 +576,7 @@
 				D40E3C651E816C43009B4B40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D40E3C661E816C43009B4B40 /* Build configuration list for PBXNativeTarget "Universal_TunerUITests" */ = {
 			isa = XCConfigurationList;
@@ -579,6 +585,7 @@
 				D40E3C681E816C43009B4B40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
