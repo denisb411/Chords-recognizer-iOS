@@ -18,9 +18,9 @@ class ViewController: UIViewController, TunerDelegate {
     @IBOutlet weak var nearestPitch: UILabel!
     @IBOutlet weak var distanceFromNearest: UILabel!
     
-    @IBOutlet weak var analogView: AnalogView!
+    @IBOutlet weak var stableView: StableView!
     
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var pointerView: PointerView!
     
     @IBOutlet weak var prevPitch: UILabel!
     @IBOutlet weak var nextPitch: UILabel!
@@ -38,23 +38,6 @@ class ViewController: UIViewController, TunerDelegate {
         tuner.start()
         tuner.delegate = self
         
-        
-        
-        
-//        analogView.frame = CGRect(
-//            origin: CGPoint(x: round(self.view.bounds.width - 245) / 2,
-//                            y: round(self.view.bounds.height - 245) / 2),
-//            size:   CGSize(width: 245, height: 245)
-//        )
-        
-        
-//        self.view.addSubview(analogView)
-    }
-    
-    func updateUI() {
-        
-        
-        
     }
     
     func tunerDidMeasurePitch(_ pitch: Pitch, withDistance distance: Double,
@@ -69,14 +52,19 @@ class ViewController: UIViewController, TunerDelegate {
         nearestPitch.text = String(pitch.description)
         distanceFromNearest.text = String(format:"%.4f", abs(distance))
         
-        currectPitch.text = String(pitch.description)
-        prevPitch.text = String((pitch - 1).description)
-        nextPitch.text = String((pitch + 1).description)
+//        currectPitch.text = String(pitch.description)
+//        prevPitch.text = String((pitch - 1).description)
+//        nextPitch.text = String((pitch + 1).description)
         
         
         
     }
     
+    @IBAction func rotateButton() {
+        
+        pointerView.rotateButton()
+        
+    }
     
 
     override func didReceiveMemoryWarning() {
