@@ -31,7 +31,8 @@ protocol TunerDelegate {
      * Finally, the amplitude is the volume (note: of all frequencies).
      */
     func tunerDidMeasurePitch(_ pitch: Pitch, withDistance distance: Double,
-                              amplitude: Double, frequency: Double)
+                              amplitude: Double, frequency: Double, distanceState:Bool, distanceOnRule:Double)
+    
 }
 
 class Tuner {
@@ -39,6 +40,9 @@ class Tuner {
     
     let minimum = Double(50)
     let maximum = Double(2000)
+    
+    var negativeDistance = false
+    var positiveDistace = true
     
     fileprivate var timer: Timer?
     var mic: AKMicrophone
@@ -55,7 +59,7 @@ class Tuner {
         AudioKit.output = silence
         mic.start()
         AudioKit.start()
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self,
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self,
                                      selector: #selector(analyse),
                                      userInfo: nil,
                                      repeats: true)
@@ -78,6 +82,8 @@ class Tuner {
         /* Read frequency and amplitude from the analyzer. */
         let frequency = tracker.frequency
         let amplitude = tracker.amplitude
+        var distanceOnRule = 0.0
+        var distanceState = true  //true means that the distance is negative
         
         /* Find nearest pitch. */
         let pitch = Pitch.nearest(frequency)
@@ -85,8 +91,28 @@ class Tuner {
         /* Calculate the distance. */
         let distance = frequency - pitch.frequency
         
+        if distance < 0 {
+            distanceState = true
+        } else {
+            distanceState = false
+        }
+        
+        if distanceState {
+            let distancePrev = pitch.frequency - (pitch - 1).frequency
+            let ruleOfDistance = distancePrev / 90  //calculate the distance of each degree
+            distanceOnRule = distance/ruleOfDistance
+        } else {
+            let distanceNext = (pitch + 1).frequency - pitch.frequency
+            let ruleOfDistance = distanceNext / 90
+            distanceOnRule = distance/ruleOfDistance
+        }
+        
+        
+        
+        
         /* Call the delegate. */
         self.delegate?.tunerDidMeasurePitch(pitch, withDistance: distance,
-                                            amplitude: amplitude, frequency: frequency)
+                                            amplitude: amplitude, frequency: frequency, distanceState:distanceState, distanceOnRule:distanceOnRule)
     }
+    
 }

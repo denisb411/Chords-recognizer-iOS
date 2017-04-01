@@ -21,6 +21,16 @@
 		D40E3C751E8171BA009B4B40 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D40E3C731E8171BA009B4B40 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4EA4E6B1E8DA12B00DA40BD /* StableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E6A1E8DA12B00DA40BD /* StableView.swift */; };
 		D4EA4E6D1E8DA98F00DA40BD /* PointerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E6C1E8DA98F00DA40BD /* PointerView.swift */; };
+		D4EA4E7D1E8EDA3400DA40BD /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E731E8EDA3400DA40BD /* UIButtonX.swift */; };
+		D4EA4E7E1E8EDA3400DA40BD /* UIImageViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E741E8EDA3400DA40BD /* UIImageViewX.swift */; };
+		D4EA4E7F1E8EDA3400DA40BD /* UILabelX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E751E8EDA3400DA40BD /* UILabelX.swift */; };
+		D4EA4E801E8EDA3400DA40BD /* UISliderX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E761E8EDA3400DA40BD /* UISliderX.swift */; };
+		D4EA4E811E8EDA3400DA40BD /* UITextFieldX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E771E8EDA3400DA40BD /* UITextFieldX.swift */; };
+		D4EA4E821E8EDA3400DA40BD /* UIViewAnchorPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E781E8EDA3400DA40BD /* UIViewAnchorPoint.swift */; };
+		D4EA4E831E8EDA3400DA40BD /* UIViewControllerX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E791E8EDA3400DA40BD /* UIViewControllerX.swift */; };
+		D4EA4E841E8EDA3400DA40BD /* UIViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E7A1E8EDA3400DA40BD /* UIViewX.swift */; };
+		D4EA4E851E8EDA3400DA40BD /* UIViewXRadialGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E7B1E8EDA3400DA40BD /* UIViewXRadialGradient.swift */; };
+		D4EA4E861E8EDA3400DA40BD /* UIVisualEffectViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E7C1E8EDA3400DA40BD /* UIVisualEffectViewX.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +84,16 @@
 		D40E3C731E8171BA009B4B40 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
 		D4EA4E6A1E8DA12B00DA40BD /* StableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StableView.swift; sourceTree = "<group>"; };
 		D4EA4E6C1E8DA98F00DA40BD /* PointerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerView.swift; sourceTree = "<group>"; };
+		D4EA4E731E8EDA3400DA40BD /* UIButtonX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
+		D4EA4E741E8EDA3400DA40BD /* UIImageViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewX.swift; sourceTree = "<group>"; };
+		D4EA4E751E8EDA3400DA40BD /* UILabelX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelX.swift; sourceTree = "<group>"; };
+		D4EA4E761E8EDA3400DA40BD /* UISliderX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISliderX.swift; sourceTree = "<group>"; };
+		D4EA4E771E8EDA3400DA40BD /* UITextFieldX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldX.swift; sourceTree = "<group>"; };
+		D4EA4E781E8EDA3400DA40BD /* UIViewAnchorPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewAnchorPoint.swift; sourceTree = "<group>"; };
+		D4EA4E791E8EDA3400DA40BD /* UIViewControllerX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerX.swift; sourceTree = "<group>"; };
+		D4EA4E7A1E8EDA3400DA40BD /* UIViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewX.swift; sourceTree = "<group>"; };
+		D4EA4E7B1E8EDA3400DA40BD /* UIViewXRadialGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewXRadialGradient.swift; sourceTree = "<group>"; };
+		D4EA4E7C1E8EDA3400DA40BD /* UIVisualEffectViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVisualEffectViewX.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +125,7 @@
 		D40E3C2F1E816C43009B4B40 = {
 			isa = PBXGroup;
 			children = (
+				D4EA4E721E8EDA3400DA40BD /* DesignableX */,
 				D40E3C731E8171BA009B4B40 /* AudioKit.framework */,
 				D40E3C3A1E816C43009B4B40 /* Universal_Tuner */,
 				D40E3C4F1E816C43009B4B40 /* Universal_TunerTests */,
@@ -173,6 +194,24 @@
 				D40E3C711E817158009B4B40 /* Tuner.swift */,
 			);
 			name = Logic;
+			sourceTree = "<group>";
+		};
+		D4EA4E721E8EDA3400DA40BD /* DesignableX */ = {
+			isa = PBXGroup;
+			children = (
+				D4EA4E731E8EDA3400DA40BD /* UIButtonX.swift */,
+				D4EA4E741E8EDA3400DA40BD /* UIImageViewX.swift */,
+				D4EA4E751E8EDA3400DA40BD /* UILabelX.swift */,
+				D4EA4E761E8EDA3400DA40BD /* UISliderX.swift */,
+				D4EA4E771E8EDA3400DA40BD /* UITextFieldX.swift */,
+				D4EA4E781E8EDA3400DA40BD /* UIViewAnchorPoint.swift */,
+				D4EA4E791E8EDA3400DA40BD /* UIViewControllerX.swift */,
+				D4EA4E7A1E8EDA3400DA40BD /* UIViewX.swift */,
+				D4EA4E7B1E8EDA3400DA40BD /* UIViewXRadialGradient.swift */,
+				D4EA4E7C1E8EDA3400DA40BD /* UIVisualEffectViewX.swift */,
+			);
+			name = DesignableX;
+			path = Universal_Tuner/DesignableX;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,11 +349,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4EA4E861E8EDA3400DA40BD /* UIVisualEffectViewX.swift in Sources */,
+				D4EA4E811E8EDA3400DA40BD /* UITextFieldX.swift in Sources */,
 				D4EA4E6D1E8DA98F00DA40BD /* PointerView.swift in Sources */,
+				D4EA4E851E8EDA3400DA40BD /* UIViewXRadialGradient.swift in Sources */,
 				D4EA4E6B1E8DA12B00DA40BD /* StableView.swift in Sources */,
 				D40E3C3E1E816C43009B4B40 /* ViewController.swift in Sources */,
 				D40E3C3C1E816C43009B4B40 /* AppDelegate.swift in Sources */,
+				D4EA4E821E8EDA3400DA40BD /* UIViewAnchorPoint.swift in Sources */,
+				D4EA4E7D1E8EDA3400DA40BD /* UIButtonX.swift in Sources */,
 				D40E3C6E1E817117009B4B40 /* Note.swift in Sources */,
+				D4EA4E841E8EDA3400DA40BD /* UIViewX.swift in Sources */,
+				D4EA4E7E1E8EDA3400DA40BD /* UIImageViewX.swift in Sources */,
+				D4EA4E831E8EDA3400DA40BD /* UIViewControllerX.swift in Sources */,
+				D4EA4E801E8EDA3400DA40BD /* UISliderX.swift in Sources */,
+				D4EA4E7F1E8EDA3400DA40BD /* UILabelX.swift in Sources */,
 				D40E3C721E817158009B4B40 /* Tuner.swift in Sources */,
 				D40E3C701E817131009B4B40 /* Pitch.swift in Sources */,
 			);

@@ -44,7 +44,7 @@ class PointerView: UIView {
         let dotStartAngle: CGFloat = 0
         let dotEndAngle: CGFloat = CGFloat(2 * M_PI) // π
         
-        var path = UIBezierPath(arcCenter: dotCenter,
+        let path = UIBezierPath(arcCenter: dotCenter,
                             radius: dotRadius/2,
                             startAngle: dotStartAngle,
                             endAngle: dotEndAngle,
@@ -60,7 +60,7 @@ class PointerView: UIView {
         arrowLayer.frame = CGRect(x:bounds.width/2, y: bounds.height/2, width: bounds.width, height: bounds.height)
         
         
-        arrow.path = UIBezierPath(rect: CGRect(x: 0, y:0 - 1, width: -250, height: 1)).cgPath
+        arrow.path = UIBezierPath(rect: CGRect(x: 0, y:0 - 1, width: -bounds.width/2, height: 1)).cgPath
         arrow.backgroundColor = UIColor.red.cgColor
         arrow.fillColor = UIColor.clear.cgColor
         arrow.strokeColor = counterColor.cgColor
@@ -82,6 +82,15 @@ class PointerView: UIView {
             
             
 
+            
+        })
+        
+    }
+    
+    func drawPointerAt (_ degreeToDraw: Double) {
+        
+        UIView.animate(withDuration: 5, animations: {
+            self.arrow.setAffineTransform(CGAffineTransform(rotationAngle:self.radians(degreeToDraw)))
             
         })
         

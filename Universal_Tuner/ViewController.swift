@@ -24,8 +24,8 @@ class ViewController: UIViewController, TunerDelegate {
     
     @IBOutlet weak var prevPitch: UILabel!
     @IBOutlet weak var nextPitch: UILabel!
-    @IBOutlet weak var currectPitch: UILabel!
     
+    @IBOutlet weak var currentPitch: UILabelX!
     
     
 //    let analogView = AnalogView(frame: CGRect(x: 20, y: 200, width: 340, height: 300))
@@ -41,20 +41,33 @@ class ViewController: UIViewController, TunerDelegate {
     }
     
     func tunerDidMeasurePitch(_ pitch: Pitch, withDistance distance: Double,
-                              amplitude: Double, frequency: Double) {
+                              amplitude: Double, frequency: Double, distanceState: Bool, distanceOnRule: Double) {
         
         if amplitude < 0.05 {
             return
         }
         
+        var degreeToDraw = 0.0
+        
         frequencyLabel.text = String(format:"%.4f", frequency)
         amplitudeLabel.text = String(format:"%.4f", amplitude)
         nearestPitch.text = String(pitch.description)
-        distanceFromNearest.text = String(format:"%.4f", abs(distance))
+        distanceFromNearest.text = String(format:"%.4f", distance)
         
-//        currectPitch.text = String(pitch.description)
+        currentPitch.text = String(pitch.description)
+        
 //        prevPitch.text = String((pitch - 1).description)
 //        nextPitch.text = String((pitch + 1).description)
+        
+        if distanceState {  //if distance is negative, draw the pointer to the left
+            degreeToDraw = 90 - distanceOnRule
+        } else {
+            degreeToDraw = 90 + distanceOnRule
+        }
+        
+        print (degreeToDraw)
+        
+        pointerView.drawPointerAt(degreeToDraw)
         
         
         
