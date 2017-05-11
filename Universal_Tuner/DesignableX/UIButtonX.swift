@@ -11,6 +11,8 @@ import UIKit
 @IBDesignable
 class UIButtonX: UIButton {
     
+    let borderLayer = CAShapeLayer()
+    
     enum FromDirection:Int {
         case Top = 0
         case Right = 1
@@ -80,6 +82,29 @@ class UIButtonX: UIButton {
         }
     }
     
+    @IBInspectable var widthBorder:Double = 0.0
+    @IBInspectable var widthColor:UIColor = UIColor.black
+    
+    @IBInspectable var makeItRound:Bool = false {
+        didSet {
+            
+            let buttonCenter = CGPoint(x: self.bounds.width/2, y: self.bounds.height/2)
+            
+            borderLayer.frame = self.layer.bounds
+            borderLayer.strokeColor = self.widthColor.cgColor
+            borderLayer.fillColor = nil
+            borderLayer.lineWidth = CGFloat(self.widthBorder)
+            let path = UIBezierPath(arcCenter: buttonCenter,
+                                    radius: self.bounds.width/2 - self.borderWidth,
+                                    startAngle: 0,
+                                    endAngle: CGFloat(2*M_PI),
+                                    clockwise: true)
+            borderLayer.path = path.cgPath
+            self.layer.addSublayer(borderLayer)
+            
+        }
+    }
+    
     @IBInspectable var borderWidth: CGFloat = 0.0 {
         didSet {
             self.layer.borderWidth = borderWidth
@@ -90,5 +115,18 @@ class UIButtonX: UIButton {
         didSet {
             self.layer.borderColor = borderColor.cgColor
         }
+    }
+    
+    func selectButton(_ select:Bool) {
+    
+        if select {
+            borderLayer.fillColor = UIColor.green.cgColor
+            setNeedsDisplay()
+        } else{
+            borderLayer.fillColor = nil
+            setNeedsDisplay()
+        }
+        
+        
     }
 }

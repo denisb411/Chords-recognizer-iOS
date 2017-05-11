@@ -28,4 +28,10 @@ class UILabelX: UILabel {
             self.layer.borderColor = borderColor.cgColor
         }
     }
+    
+    @IBInspectable var makeItRound:Bool = false {
+        didSet {
+            self.layer.cornerRadius = (self.bounds.width + self.bounds.height)/4
+        }
+    }
 }
