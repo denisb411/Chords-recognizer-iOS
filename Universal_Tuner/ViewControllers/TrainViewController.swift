@@ -50,6 +50,7 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
                     selectAChordLabel.isHidden = false
                 }
             }
+            
         } else {
             print ("here2")
         }
@@ -117,7 +118,7 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
         
         selectAChordLabel.isHidden = true
         
-        if ChromaticViewController.tuner.tracker.amplitude < 0.1 {
+        if ChromaticViewController.tuner.tracker.amplitude < 0.05 {
             return
         }
         
@@ -140,6 +141,7 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
         let json: [String: Any] = ["chordType": selected!.chordNumber,
                                    "fftData": newFftData]
         
+        print (ChromaticViewController.tuner.fft.fftData.count)
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
@@ -147,7 +149,7 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
             print (printData)
         }
         
-        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/appendToCachedFftData/"
+        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/appendToCachedData/"
         
         
         let url = URL(string: urlAdressAppendFftData)

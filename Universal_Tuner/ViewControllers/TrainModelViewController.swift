@@ -127,7 +127,7 @@ class TrainModelViewController: UIViewController {
             print (printData)
         }
         
-        let urlAdressAppendFftData = "http://" + TrainModelViewController.urlAddress + "/api/appendToCachedFftData/"
+        let urlAdressAppendFftData = "http://" + TrainModelViewController.urlAddress + "/api/appendToCachedData/"
         
         
         let url = URL(string: urlAdressAppendFftData)

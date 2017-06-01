@@ -28,7 +28,7 @@ open class CustomAKNodeOutputPlot: EZAudioPlot {
         }
     }
     
-    internal var bufferSize: UInt32 = 1_024
+    internal var bufferSize: UInt32 = 8096
     
     /// The node whose output to graph
     open var node: AKNode? {

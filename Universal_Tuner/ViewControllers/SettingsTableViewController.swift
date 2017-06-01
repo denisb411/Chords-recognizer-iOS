@@ -23,7 +23,13 @@ class SettingsTableViewController:UITableViewController{
         navigationItem.backBarButtonItem = backItem
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        tableView.indexPathsForSelectedRows?.forEach {
+            tableView.deselectRow(at: $0, animated: true)
+        }
         
         currentServerLabel.text = ServerExchange.urlAddress
         
@@ -49,6 +55,36 @@ class SettingsTableViewController:UITableViewController{
         self.timerCheckServerStatus = nil
         
     }
+    
+    // TODO: Program button to change the srv address
+    
+    @IBAction func changeServerPressed(_ sender: Any) {
+        
+//        //1. Create the alert controller.
+//        let alert = UIAlertController(title: "Change server address", message: "Insert a new server address", preferredStyle: .alert)
+//        
+//        //2. Add the text field. You can configure it however you need.
+//        alert.addTextField { (textField) in
+//            textField.text = ""
+//        }
+//        
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
+//            print("Cancel Pressed")
+//            return
+//        }))
+//        
+//        // 3. Grab the value from the text field, and print it when the user clicks OK.
+//        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] (_) in
+//            
+//            ServerExchange.setServerUrl(textField.text)
+//
+//        }))
+//        
+//        // 4. Present the alert.
+//        self.present(alert, animated: true, completion: nil)
+
+    }
+    
     
     func checkServerStatus() {
         

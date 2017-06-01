@@ -5,12 +5,12 @@ import AudioKit
 /// FFT Calculation for any node
 @objc open class CustomAKFFTTap: NSObject, EZAudioFFTDelegate {
     
-    internal let bufferSize: UInt32 = 1024
+    internal let bufferSize: UInt32 = 8192
     internal var fft: EZAudioFFT?
     
     /// Array of FFT data
-    let fftDataSize = 512
-    open var fftData = [Double](zeros: 512)
+    let fftDataSize = 4096
+    open var fftData = [Double](zeros: 4096)
     
     /// Initialze the FFT calculation on a given node
     ///

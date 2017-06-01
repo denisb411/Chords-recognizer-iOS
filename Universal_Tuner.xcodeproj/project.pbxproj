@@ -12,8 +12,8 @@
 		D40E3C461E816C43009B4B40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40E3C441E816C43009B4B40 /* LaunchScreen.storyboard */; };
 		D40E3C511E816C43009B4B40 /* Universal_TunerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E3C501E816C43009B4B40 /* Universal_TunerTests.swift */; };
 		D40E3C5C1E816C43009B4B40 /* Universal_TunerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E3C5B1E816C43009B4B40 /* Universal_TunerUITests.swift */; };
-		D40E3C741E8171BA009B4B40 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40E3C731E8171BA009B4B40 /* AudioKit.framework */; };
-		D40E3C751E8171BA009B4B40 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D40E3C731E8171BA009B4B40 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D41CA5071EDE1C8800189C41 /* TempiAudioInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41CA5061EDE1C8800189C41 /* TempiAudioInput.swift */; };
+		D41CA5091EDE1CC900189C41 /* TempiFFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41CA5081EDE1CC900189C41 /* TempiFFT.swift */; };
 		D44E25931EC1ECAB00F62CD4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D44E25821EC1ECAB00F62CD4 /* Info.plist */; };
 		D44E25B11EC1EE6700F62CD4 /* CustomAKFFTTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25A01EC1EE6700F62CD4 /* CustomAKFFTTap.swift */; };
 		D44E25B21EC1EE6700F62CD4 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25A11EC1EE6700F62CD4 /* Note.swift */; };
@@ -37,6 +37,14 @@
 		D44E25CA1EC3EDDB00F62CD4 /* ChordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25C91EC3EDDB00F62CD4 /* ChordsTableViewController.swift */; };
 		D44E25CC1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25CB1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift */; };
 		D44E25D01EC513AF00F62CD4 /* AlertMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25CF1EC513AF00F62CD4 /* AlertMessages.swift */; };
+		D44E25D21EC606F600F62CD4 /* BackupDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25D11EC606F600F62CD4 /* BackupDataTableViewController.swift */; };
+		D4A23FAF1ED61EDD00DD1A50 /* TestsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A23FAE1ED61EDD00DD1A50 /* TestsTableViewController.swift */; };
+		D4A23FB21ED71A6200DD1A50 /* InstrumentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A23FB11ED71A6200DD1A50 /* InstrumentTableViewController.swift */; };
+		D4A23FB41ED71AA000DD1A50 /* DataPercentageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A23FB31ED71AA000DD1A50 /* DataPercentageTableViewController.swift */; };
+		D4A23FB61ED71AAE00DD1A50 /* BufferSizeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A23FB51ED71AAE00DD1A50 /* BufferSizeTableViewController.swift */; };
+		D4A23FB81ED71AC100DD1A50 /* TestCaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A23FB71ED71AC100DD1A50 /* TestCaseTableViewController.swift */; };
+		D4BF85761ECBACB900161AA9 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4BF85751ECBACB900161AA9 /* AudioKit.framework */; };
+		D4BF85771ECBACB900161AA9 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4BF85751ECBACB900161AA9 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4EA4E7D1E8EDA3400DA40BD /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E731E8EDA3400DA40BD /* UIButtonX.swift */; };
 		D4EA4E7E1E8EDA3400DA40BD /* UIImageViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E741E8EDA3400DA40BD /* UIImageViewX.swift */; };
 		D4EA4E7F1E8EDA3400DA40BD /* UILabelX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA4E751E8EDA3400DA40BD /* UILabelX.swift */; };
@@ -67,13 +75,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D40E3C761E8171BB009B4B40 /* Embed Frameworks */ = {
+		D4BF85781ECBACB900161AA9 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D40E3C751E8171BA009B4B40 /* AudioKit.framework in Embed Frameworks */,
+				D4BF85771ECBACB900161AA9 /* AudioKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +101,8 @@
 		D40E3C5B1E816C43009B4B40 /* Universal_TunerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Universal_TunerUITests.swift; sourceTree = "<group>"; };
 		D40E3C5D1E816C43009B4B40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D40E3C731E8171BA009B4B40 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
+		D41CA5061EDE1C8800189C41 /* TempiAudioInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempiAudioInput.swift; sourceTree = "<group>"; };
+		D41CA5081EDE1CC900189C41 /* TempiFFT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempiFFT.swift; sourceTree = "<group>"; };
 		D44E25821EC1ECAB00F62CD4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D44E25A01EC1EE6700F62CD4 /* CustomAKFFTTap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAKFFTTap.swift; sourceTree = "<group>"; };
 		D44E25A11EC1EE6700F62CD4 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
@@ -116,6 +126,13 @@
 		D44E25C91EC3EDDB00F62CD4 /* ChordsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordsTableViewController.swift; sourceTree = "<group>"; };
 		D44E25CB1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAKNodeOutputPlot.swift; sourceTree = "<group>"; };
 		D44E25CF1EC513AF00F62CD4 /* AlertMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertMessages.swift; sourceTree = "<group>"; };
+		D44E25D11EC606F600F62CD4 /* BackupDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupDataTableViewController.swift; sourceTree = "<group>"; };
+		D4A23FAE1ED61EDD00DD1A50 /* TestsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsTableViewController.swift; sourceTree = "<group>"; };
+		D4A23FB11ED71A6200DD1A50 /* InstrumentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentTableViewController.swift; sourceTree = "<group>"; };
+		D4A23FB31ED71AA000DD1A50 /* DataPercentageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPercentageTableViewController.swift; sourceTree = "<group>"; };
+		D4A23FB51ED71AAE00DD1A50 /* BufferSizeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferSizeTableViewController.swift; sourceTree = "<group>"; };
+		D4A23FB71ED71AC100DD1A50 /* TestCaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCaseTableViewController.swift; sourceTree = "<group>"; };
+		D4BF85751ECBACB900161AA9 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
 		D4EA4E731E8EDA3400DA40BD /* UIButtonX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
 		D4EA4E741E8EDA3400DA40BD /* UIImageViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewX.swift; sourceTree = "<group>"; };
 		D4EA4E751E8EDA3400DA40BD /* UILabelX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelX.swift; sourceTree = "<group>"; };
@@ -133,7 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D40E3C741E8171BA009B4B40 /* AudioKit.framework in Frameworks */,
+				D4BF85761ECBACB900161AA9 /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +174,7 @@
 		D40E3C2F1E816C43009B4B40 = {
 			isa = PBXGroup;
 			children = (
+				D4BF85751ECBACB900161AA9 /* AudioKit.framework */,
 				D4EA4E721E8EDA3400DA40BD /* DesignableX */,
 				D40E3C731E8171BA009B4B40 /* AudioKit.framework */,
 				D40E3C3A1E816C43009B4B40 /* Universal_Tuner */,
@@ -218,6 +236,8 @@
 				D44E25A41EC1EE6700F62CD4 /* Tuner.swift */,
 				D44E25C01EC1EED900F62CD4 /* Chord.swift */,
 				D44E25CB1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift */,
+				D41CA5061EDE1C8800189C41 /* TempiAudioInput.swift */,
+				D41CA5081EDE1CC900189C41 /* TempiFFT.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -225,6 +245,7 @@
 		D44E25A51EC1EE6700F62CD4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D4A23FB01ED719B200DD1A50 /* TestsViewControllers */,
 				D40E3C3F1E816C43009B4B40 /* Main.storyboard */,
 				D44E25A61EC1EE6700F62CD4 /* ChromaticViewController.swift */,
 				D44E25A71EC1EE6700F62CD4 /* DevelopmentViewController.swift */,
@@ -236,6 +257,7 @@
 				D44E25C41EC1F76D00F62CD4 /* TrainViewController.swift */,
 				D44E25C61EC29ADF00F62CD4 /* MainDataTableViewController.swift */,
 				D44E25C91EC3EDDB00F62CD4 /* ChordsTableViewController.swift */,
+				D44E25D11EC606F600F62CD4 /* BackupDataTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -250,6 +272,18 @@
 				D44E25CF1EC513AF00F62CD4 /* AlertMessages.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D4A23FB01ED719B200DD1A50 /* TestsViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4A23FAE1ED61EDD00DD1A50 /* TestsTableViewController.swift */,
+				D4A23FB11ED71A6200DD1A50 /* InstrumentTableViewController.swift */,
+				D4A23FB31ED71AA000DD1A50 /* DataPercentageTableViewController.swift */,
+				D4A23FB51ED71AAE00DD1A50 /* BufferSizeTableViewController.swift */,
+				D4A23FB71ED71AC100DD1A50 /* TestCaseTableViewController.swift */,
+			);
+			name = TestsViewControllers;
 			sourceTree = "<group>";
 		};
 		D4EA4E721E8EDA3400DA40BD /* DesignableX */ = {
@@ -280,7 +314,7 @@
 				D40E3C341E816C43009B4B40 /* Sources */,
 				D40E3C351E816C43009B4B40 /* Frameworks */,
 				D40E3C361E816C43009B4B40 /* Resources */,
-				D40E3C761E8171BB009B4B40 /* Embed Frameworks */,
+				D4BF85781ECBACB900161AA9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -412,6 +446,8 @@
 				D4EA4E851E8EDA3400DA40BD /* UIViewXRadialGradient.swift in Sources */,
 				D44E25B41EC1EE6700F62CD4 /* ServerExchange.swift in Sources */,
 				D44E25B91EC1EE6700F62CD4 /* SettingsTableViewController.swift in Sources */,
+				D41CA5071EDE1C8800189C41 /* TempiAudioInput.swift in Sources */,
+				D4A23FB81ED71AC100DD1A50 /* TestCaseTableViewController.swift in Sources */,
 				D44E25C31EC1F6F700F62CD4 /* CachedDataViewController.swift in Sources */,
 				D44E25C71EC29ADF00F62CD4 /* MainDataTableViewController.swift in Sources */,
 				D44E25B61EC1EE6700F62CD4 /* ChromaticViewController.swift in Sources */,
@@ -423,6 +459,7 @@
 				D44E25BB1EC1EE6700F62CD4 /* TrainModelViewController.swift in Sources */,
 				D44E25CA1EC3EDDB00F62CD4 /* ChordsTableViewController.swift in Sources */,
 				D44E25C51EC1F76D00F62CD4 /* TrainViewController.swift in Sources */,
+				D4A23FB61ED71AAE00DD1A50 /* BufferSizeTableViewController.swift in Sources */,
 				D44E25C11EC1EED900F62CD4 /* Chord.swift in Sources */,
 				D4EA4E7D1E8EDA3400DA40BD /* UIButtonX.swift in Sources */,
 				D44E25B81EC1EE6700F62CD4 /* PredictViewController.swift in Sources */,
@@ -431,13 +468,18 @@
 				D4EA4E7E1E8EDA3400DA40BD /* UIImageViewX.swift in Sources */,
 				D4EA4E831E8EDA3400DA40BD /* UIViewControllerX.swift in Sources */,
 				D4EA4E801E8EDA3400DA40BD /* UISliderX.swift in Sources */,
+				D44E25D21EC606F600F62CD4 /* BackupDataTableViewController.swift in Sources */,
 				D4EA4E7F1E8EDA3400DA40BD /* UILabelX.swift in Sources */,
 				D44E25B31EC1EE6700F62CD4 /* Pitch.swift in Sources */,
 				D44E25BD1EC1EE6700F62CD4 /* NoteButton.swift in Sources */,
+				D41CA5091EDE1CC900189C41 /* TempiFFT.swift in Sources */,
 				D44E25B21EC1EE6700F62CD4 /* Note.swift in Sources */,
 				D44E25B71EC1EE6700F62CD4 /* DevelopmentViewController.swift in Sources */,
 				D44E25B51EC1EE6700F62CD4 /* Tuner.swift in Sources */,
+				D4A23FB41ED71AA000DD1A50 /* DataPercentageTableViewController.swift in Sources */,
+				D4A23FAF1ED61EDD00DD1A50 /* TestsTableViewController.swift in Sources */,
 				D44E25B11EC1EE6700F62CD4 /* CustomAKFFTTap.swift in Sources */,
+				D4A23FB21ED71A6200DD1A50 /* InstrumentTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
