@@ -78,7 +78,7 @@ class ChromaticViewController: UIViewController, TunerDelegate {
     @IBOutlet weak var prevPitch: UILabel!
     @IBOutlet weak var nextPitch: UILabel!
     
-    @IBOutlet weak var currentPitch: UILabelX!
+    @IBOutlet weak var currentPitch: UILabel!
     
     @IBAction func fftButtonPressed(_ sender: Any) { //collect the FFT
     

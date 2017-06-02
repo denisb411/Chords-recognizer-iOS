@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8373F04553103AE5068FE129 /* libPods-Universal_Tuner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ACE5547CBEAC039278355C /* libPods-Universal_Tuner.a */; };
 		D40E3C411E816C43009B4B40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40E3C3F1E816C43009B4B40 /* Main.storyboard */; };
 		D40E3C431E816C43009B4B40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40E3C421E816C43009B4B40 /* Assets.xcassets */; };
 		D40E3C461E816C43009B4B40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40E3C441E816C43009B4B40 /* LaunchScreen.storyboard */; };
@@ -37,6 +36,8 @@
 		D44E25CC1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25CB1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift */; };
 		D44E25D01EC513AF00F62CD4 /* AlertMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25CF1EC513AF00F62CD4 /* AlertMessages.swift */; };
 		D44E25D21EC606F600F62CD4 /* BackupDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25D11EC606F600F62CD4 /* BackupDataTableViewController.swift */; };
+		D4A134671EE0E6FA007DD1EE /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4A134661EE0E6FA007DD1EE /* AudioKit.framework */; };
+		D4A134681EE0E6FA007DD1EE /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4A134661EE0E6FA007DD1EE /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4A23FAF1ED61EDD00DD1A50 /* TestsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A23FAE1ED61EDD00DD1A50 /* TestsTableViewController.swift */; };
 		D4A23FB21ED71A6200DD1A50 /* InstrumentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A23FB11ED71A6200DD1A50 /* InstrumentTableViewController.swift */; };
 		D4A23FB41ED71AA000DD1A50 /* DataPercentageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A23FB31ED71AA000DD1A50 /* DataPercentageTableViewController.swift */; };
@@ -68,6 +69,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D4A134681EE0E6FA007DD1EE /* AudioKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,8 +77,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00ACE5547CBEAC039278355C /* libPods-Universal_Tuner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Universal_Tuner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		09D2164C94F828C3B62F7018 /* Pods-Universal_Tuner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Universal_Tuner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Universal_Tuner/Pods-Universal_Tuner.debug.xcconfig"; sourceTree = "<group>"; };
 		D40E3C381E816C43009B4B40 /* Universal_Tuner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Universal_Tuner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40E3C401E816C43009B4B40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D40E3C421E816C43009B4B40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,12 +112,12 @@
 		D44E25CB1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAKNodeOutputPlot.swift; sourceTree = "<group>"; };
 		D44E25CF1EC513AF00F62CD4 /* AlertMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertMessages.swift; sourceTree = "<group>"; };
 		D44E25D11EC606F600F62CD4 /* BackupDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupDataTableViewController.swift; sourceTree = "<group>"; };
+		D4A134661EE0E6FA007DD1EE /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
 		D4A23FAE1ED61EDD00DD1A50 /* TestsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsTableViewController.swift; sourceTree = "<group>"; };
 		D4A23FB11ED71A6200DD1A50 /* InstrumentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentTableViewController.swift; sourceTree = "<group>"; };
 		D4A23FB31ED71AA000DD1A50 /* DataPercentageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPercentageTableViewController.swift; sourceTree = "<group>"; };
 		D4A23FB51ED71AAE00DD1A50 /* BufferSizeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferSizeTableViewController.swift; sourceTree = "<group>"; };
 		D4A23FB71ED71AC100DD1A50 /* TestCaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCaseTableViewController.swift; sourceTree = "<group>"; };
-		D6DAE16C0838DEEA6FADE271 /* Pods-Universal_Tuner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Universal_Tuner.release.xcconfig"; path = "Pods/Target Support Files/Pods-Universal_Tuner/Pods-Universal_Tuner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8373F04553103AE5068FE129 /* libPods-Universal_Tuner.a in Frameworks */,
+				D4A134671EE0E6FA007DD1EE /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,24 +146,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BE13A7D6E0D63B46F7B0F5EB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				09D2164C94F828C3B62F7018 /* Pods-Universal_Tuner.debug.xcconfig */,
-				D6DAE16C0838DEEA6FADE271 /* Pods-Universal_Tuner.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		D40E3C2F1E816C43009B4B40 = {
 			isa = PBXGroup;
 			children = (
+				D4A134661EE0E6FA007DD1EE /* AudioKit.framework */,
 				D40E3C3A1E816C43009B4B40 /* Universal_Tuner */,
 				D40E3C4F1E816C43009B4B40 /* Universal_TunerTests */,
 				D40E3C5A1E816C43009B4B40 /* Universal_TunerUITests */,
 				D40E3C391E816C43009B4B40 /* Products */,
-				BE13A7D6E0D63B46F7B0F5EB /* Pods */,
-				E4488266E0000C535FC4BE7D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -267,14 +257,6 @@
 			name = TestsViewControllers;
 			sourceTree = "<group>";
 		};
-		E4488266E0000C535FC4BE7D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				00ACE5547CBEAC039278355C /* libPods-Universal_Tuner.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -282,13 +264,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D40E3C601E816C43009B4B40 /* Build configuration list for PBXNativeTarget "Universal_Tuner" */;
 			buildPhases = (
-				15CB8BD23DCA8370125E7EE7 /* [CP] Check Pods Manifest.lock */,
 				D40E3C341E816C43009B4B40 /* Sources */,
 				D40E3C351E816C43009B4B40 /* Frameworks */,
 				D40E3C361E816C43009B4B40 /* Resources */,
 				D4BF85781ECBACB900161AA9 /* Embed Frameworks */,
-				DFB2A6F8D10FA5059017F9D2 /* [CP] Embed Pods Frameworks */,
-				5CC521EA5263D16F84D57D9E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -408,54 +387,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		15CB8BD23DCA8370125E7EE7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		5CC521EA5263D16F84D57D9E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Universal_Tuner/Pods-Universal_Tuner-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DFB2A6F8D10FA5059017F9D2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Universal_Tuner/Pods-Universal_Tuner-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D40E3C341E816C43009B4B40 /* Sources */ = {
@@ -638,7 +569,6 @@
 		};
 		D40E3C611E816C43009B4B40 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09D2164C94F828C3B62F7018 /* Pods-Universal_Tuner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -656,7 +586,6 @@
 		};
 		D40E3C621E816C43009B4B40 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6DAE16C0838DEEA6FADE271 /* Pods-Universal_Tuner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
