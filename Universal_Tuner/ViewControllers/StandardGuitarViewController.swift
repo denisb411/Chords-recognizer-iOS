@@ -14,13 +14,11 @@ import AudioKit
 class StandandGuitarViewController: UIViewController, MicrophoneTrackerDelegate {
     
     
-    var mic = MicrophoneTracker()
+    var mic = MicrophoneTracker(bufferSize: 8192)
 
     var trackedAmplitude:Double = 0
     var trackedFrequency:Double = 0
     var trackedSamples = [Float]()
-
-    var bufferSize = 8192
     
     var counter = 0
     
@@ -49,7 +47,6 @@ class StandandGuitarViewController: UIViewController, MicrophoneTrackerDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         
-
         mic.delegate = self
         mic.start()
     }

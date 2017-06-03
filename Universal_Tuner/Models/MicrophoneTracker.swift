@@ -20,8 +20,8 @@ protocol MicrophoneTrackerDelegate {
 class MicrophoneTracker {
     
     
-    var mic:AKMicrophone?
-    var akMicTracker:AKMicrophoneTracker?
+    var mic:AKMicrophone
+//    var akMicTracker:AKMicrophoneTracker?
 
     var trackedSamples = [Float]()
     var trackedAmplitude:Double = 0
@@ -29,32 +29,34 @@ class MicrophoneTracker {
 
     var samplesBufferSize:Int
     
-    var delegate: MicrophoneTrackerDelegate?
+    var delegate:MicrophoneTrackerDelegate?
     
     init(bufferSize:Int = 8192) {
         self.samplesBufferSize = bufferSize
         mic = AKMicrophone()
-        akMicTracker = AKMicrophoneTracker()
-        
+//        akMicTracker = AKMicrophoneTracker()
     }
     
     func start(){
-        
-        akMicTracker?.start()
-        installTap(mic!)
+        mic.start()
+//        akMicTracker?.start()
+//        AudioKit.start()
+        installTap(mic)
         
     }
     
     func stop() {
-        akMicTracker?.stop()
-        mic?.avAudioNode.removeTap(onBus: 0)
+//        akMicTracker?.stop()
+        mic.avAudioNode.removeTap(onBus: 0)
+        mic.stop()
+//        AudioKit.stop()
     }
     
     func installTap(_ input:AKNode) {
         
-        input.avAudioNode.installTap(onBus: 0, bufferSize: AVAudioFrameCount(self.samplesBufferSize), format: AudioKit.format) { [weak self] (buffer, time) -> Void in
-            self?.signalTracker(didReceivedBuffer: buffer, atTime: time)
-        }
+        do { try input.avAudioNode.installTap(onBus: 0, bufferSize: AVAudioFrameCount(self.samplesBufferSize), format: AudioKit.format) { [weak self] (buffer, time) -> Void in
+            self!.signalTracker(didReceivedBuffer: buffer, atTime: time)
+            } } catch { print(error)}
     }
     
     
@@ -67,10 +69,18 @@ class MicrophoneTracker {
             self.trackedSamples.append(elements[i])
         }
         
-        self.trackedAmplitude = akMicTracker!.amplitude
-        self.trackedFrequency = akMicTracker!.frequency
+        var rms: Float = 0
         
-        delegate?.microphoneTracker(trackedSamples: self.trackedSamples, samplesBufferSize: self.samplesBufferSize, trackedFrequency:self.trackedFrequency, trackedAmplitude:self.trackedAmplitude)
+        for i in 0 ..< Int(self.samplesBufferSize) {
+            rms += pow(Float((buffer.floatChannelData?.pointee[i]) ?? 0.0), 2)
+        }
+
+        self.trackedAmplitude = 20*log10(rms); //calculate decibels
+        
+//        self.trackedAmplitude = akMicTracker!.amplitude
+//        self.trackedFrequency = akMicTracker!.frequency
+//        
+        delegate!.microphoneTracker(trackedSamples: self.trackedSamples, samplesBufferSize: self.samplesBufferSize, trackedFrequency:self.trackedFrequency, trackedAmplitude:self.trackedAmplitude)
         
     }
 

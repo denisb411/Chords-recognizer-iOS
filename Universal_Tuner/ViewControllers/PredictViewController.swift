@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import AudioKit
 
-class PredictViewController: UIViewController {
+class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
     
     @IBOutlet var microphoneVolumeProgressView:UIProgressView?
     
@@ -25,10 +25,25 @@ class PredictViewController: UIViewController {
     
     @IBOutlet weak var micPlotView: UIView!
     
+    var mic = MicrophoneTracker(bufferSize:1024)
+    var trackedAmplitude:Double = 0
+    var trackedFrequency:Double = 0
+    var trackedSamples = [Float]()
+    
+    func microphoneTracker(trackedSamples: [Float], samplesBufferSize: Int, trackedFrequency:Double, trackedAmplitude:Double) {
+        
+        self.trackedSamples = trackedSamples
+        self.trackedAmplitude = trackedAmplitude
+        self.trackedFrequency = trackedFrequency
+        
+    }
+    
     
     override func viewDidLoad() {
-//        let micPlot = ChromaticViewController.micPlot
-//        setupPlot(micPlot!)
+
+        mic.delegate = self
+        mic.start()
+        
     }
     
     override func viewDidAppear(_ animated:Bool){
@@ -51,6 +66,7 @@ class PredictViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.timerConstantPredict?.invalidate()
         self.timerConstantPredict = nil
+        mic.stop()
     }
     
     @objc func autoPredict() {
@@ -72,7 +88,7 @@ class PredictViewController: UIViewController {
     
     func tick() {
         
-        if ChromaticViewController.tuner.tracker.amplitude < 0.1 {
+        if self.trackedAmplitude < 0.1 {
             return
         }
         
@@ -84,19 +100,9 @@ class PredictViewController: UIViewController {
                                                               userInfo: nil,
                                                               repeats: true)
         
-        let newFftData = Array((0 ... (ChromaticViewController.tuner.fft.fftDataSize - 1)).map {
-            
-            index -> Int in
-            let tempArray = (ChromaticViewController.tuner.fft.fftData[index] * (pow(10,16)))
-            return ( Int(tempArray))
-            
-        })
-        
-        print (newFftData)
-        
         // prepare json data
         
-        let json: [String: Any] = ["fftData": newFftData]
+        let json: [String: Any] = ["samples": self.trackedSamples]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
@@ -179,7 +185,7 @@ class PredictViewController: UIViewController {
     
     func setMicrophoneVolume() {
         
-        var microphoneVolume = ChromaticViewController.tuner.tracker.amplitude * 10
+        var microphoneVolume = self.trackedAmplitude * 10
         if (microphoneVolume > 1) { microphoneVolume = 1}
         self.microphoneVolumeProgressView?.progress = Float(microphoneVolume)
         

@@ -35,7 +35,7 @@ protocol TunerDelegate {
     
 }
 
-class Tuner {
+class Tuner: MicrophoneTrackerDelegate {
     var delegate: TunerDelegate?
     
     let minimum = Double(50)
@@ -45,22 +45,19 @@ class Tuner {
     var positiveDistace = true
     
     fileprivate var timer: Timer?
-    var mic: AKMicrophone
-    var tracker: AKFrequencyTracker
-    fileprivate var silence: AKBooster
-    var fft:CustomAKFFTTap
+    var mic = MicrophoneTracker(bufferSize: 8192)
+    
+    var trackedAmplitude:Double = 0
+    var trackedFrequency:Double = 0
+    var trackedSamples = [Float]()
+    
     
     init(){
-        mic = AKMicrophone()
-        tracker = AKFrequencyTracker(mic, hopSize: minimum, peakCount: maximum)
-        silence = AKBooster(tracker, gain:0)
-        fft = CustomAKFFTTap(mic)
+        mic.delegate = self
     }
     
     func start(){
-        AudioKit.output = silence
         mic.start()
-        AudioKit.start()
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self,
                                      selector: #selector(analyse),
                                      userInfo: nil,
@@ -70,7 +67,6 @@ class Tuner {
     
     func stop(){
         mic.stop()
-        AudioKit.stop()
         timer?.invalidate()
     }
     
@@ -80,10 +76,18 @@ class Tuner {
         
     }
     
+    func microphoneTracker(trackedSamples: [Float], samplesBufferSize: Int, trackedFrequency:Double, trackedAmplitude:Double) {
+        
+        self.trackedSamples = trackedSamples
+        self.trackedAmplitude = trackedAmplitude
+        self.trackedFrequency = trackedFrequency
+        
+    }
+    
     func tick() {
         /* Read frequency and amplitude from the analyzer. */
-        let frequency = tracker.frequency
-        let amplitude = tracker.amplitude
+        let frequency = self.trackedFrequency
+        let amplitude = self.trackedAmplitude
         
         //let fft = AKFFTTap(mic)
         

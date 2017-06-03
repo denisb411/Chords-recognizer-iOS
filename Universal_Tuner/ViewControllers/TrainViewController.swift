@@ -27,7 +27,7 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
     var remainingTime = 0
     var timerMicrophoneVolume:Timer?
     
-    var mic = MicrophoneTracker()
+    var mic = MicrophoneTracker(bufferSize: 8192)
     
     var trackedAmplitude:Double = 0
     var trackedFrequency:Double = 0
@@ -145,11 +145,8 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
                                                               userInfo: nil,
                                                               repeats: true)
         
-        
         let json: [String: Any] = ["chordType": selected!.chordNumber,
-                                   "fftData": newFftData]
-        
-        print (ChromaticViewController.tuner.fft.fftData.count)
+                                   "samples": self.trackedSamples]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
@@ -222,7 +219,7 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
     
     func setMicrophoneVolume() {
             
-        var microphoneVolume = ChromaticViewController.tuner.tracker.amplitude * 10
+        var microphoneVolume = self.trackedAmplitude * 10
         if (microphoneVolume > 1) { microphoneVolume = 1}
         self.microphoneVolumeProgressView.progress = Float(microphoneVolume)
         

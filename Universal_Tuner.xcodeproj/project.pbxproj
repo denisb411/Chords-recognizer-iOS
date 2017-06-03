@@ -23,7 +23,6 @@
 		D44E25B81EC1EE6700F62CD4 /* PredictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25A81EC1EE6700F62CD4 /* PredictViewController.swift */; };
 		D44E25B91EC1EE6700F62CD4 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25A91EC1EE6700F62CD4 /* SettingsTableViewController.swift */; };
 		D44E25BA1EC1EE6700F62CD4 /* StandardGuitarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25AA1EC1EE6700F62CD4 /* StandardGuitarViewController.swift */; };
-		D44E25BB1EC1EE6700F62CD4 /* TrainModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25AB1EC1EE6700F62CD4 /* TrainModelViewController.swift */; };
 		D44E25BC1EC1EE6700F62CD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25AD1EC1EE6700F62CD4 /* AppDelegate.swift */; };
 		D44E25BD1EC1EE6700F62CD4 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25AE1EC1EE6700F62CD4 /* NoteButton.swift */; };
 		D44E25BE1EC1EE6700F62CD4 /* PointerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25AF1EC1EE6700F62CD4 /* PointerView.swift */; };
@@ -100,7 +99,6 @@
 		D44E25A81EC1EE6700F62CD4 /* PredictViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictViewController.swift; sourceTree = "<group>"; };
 		D44E25A91EC1EE6700F62CD4 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D44E25AA1EC1EE6700F62CD4 /* StandardGuitarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGuitarViewController.swift; sourceTree = "<group>"; };
-		D44E25AB1EC1EE6700F62CD4 /* TrainModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainModelViewController.swift; sourceTree = "<group>"; };
 		D44E25AD1EC1EE6700F62CD4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D44E25AE1EC1EE6700F62CD4 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
 		D44E25AF1EC1EE6700F62CD4 /* PointerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerView.swift; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 				D44E25A91EC1EE6700F62CD4 /* SettingsTableViewController.swift */,
 				D44E25AA1EC1EE6700F62CD4 /* StandardGuitarViewController.swift */,
 				D44E25C21EC1F6F700F62CD4 /* CachedDataViewController.swift */,
-				D44E25AB1EC1EE6700F62CD4 /* TrainModelViewController.swift */,
 				D44E25C41EC1F76D00F62CD4 /* TrainViewController.swift */,
 				D44E25C61EC29ADF00F62CD4 /* MainDataTableViewController.swift */,
 				D44E25C91EC3EDDB00F62CD4 /* ChordsTableViewController.swift */,
@@ -411,7 +408,6 @@
 				D4A134741EE1F6A9007DD1EE /* TestsTableViewController.swift in Sources */,
 				D44E25BC1EC1EE6700F62CD4 /* AppDelegate.swift in Sources */,
 				D44E25BF1EC1EE6700F62CD4 /* StableView.swift in Sources */,
-				D44E25BB1EC1EE6700F62CD4 /* TrainModelViewController.swift in Sources */,
 				D44E25CA1EC3EDDB00F62CD4 /* ChordsTableViewController.swift in Sources */,
 				D44E25C51EC1F76D00F62CD4 /* TrainViewController.swift in Sources */,
 				D44E25C11EC1EED900F62CD4 /* Chord.swift in Sources */,

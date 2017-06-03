@@ -12,9 +12,7 @@ import AudioKit
 
 class ChromaticViewController: UIViewController, TunerDelegate {
     
-    static let tuner = Tuner()
-    
-//    static var micPlot:AKNode?
+    let tuner = Tuner()
     
     static var chords = [
         Chord(name: "C"),
@@ -82,43 +80,15 @@ class ChromaticViewController: UIViewController, TunerDelegate {
     
     @IBAction func fftButtonPressed(_ sender: Any) { //collect the FFT
     
-        
-        
-
-        
-//        let newFftData = Array((0 ... 511).map {
-//            
-//            index -> Double in
-//            if ChromaticViewController.tuner.fft.fftData[index] > 0.00001 {
-//                return ChromaticViewController.tuner.fft.fftData[index]
-//            } else {
-//                return 0
-//            }
-//            
-//        })
-        
-        print (ChromaticViewController.tuner.fft.fftData)
-        print (ChromaticViewController.tuner.fft.fftData.count)
-        print (ChromaticViewController.tuner.fft.fftData.max())
-        var fftData = ChromaticViewController.tuner.fft.fftData
-        
-            
-        
-
-
-
-        
     }
     @IBOutlet weak var fftButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ChromaticViewController.tuner.start()
-        ChromaticViewController.tuner.delegate = self
-//        ChromaticViewController.micPlot = AKMixer(ChromaticViewController.tuner.mic)
-        
+        tuner.delegate = self
     }
+    
     
     func tunerDidMeasurePitch(_ nearestPitch: Pitch, withDistance distance: Double,
                               amplitude: Double, frequency: Double) {
@@ -140,13 +110,16 @@ class ChromaticViewController: UIViewController, TunerDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tuner.start()
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        tuner.stop()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
-        
-        
     }
 
     
