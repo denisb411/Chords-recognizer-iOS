@@ -28,24 +28,32 @@ class MicrophoneTracker {
     var trackedFrequency:Double = 0
 
     var samplesBufferSize:Int
-    var akMicTracker:AKMicrophoneTracker
     
     var delegate:MicrophoneTrackerDelegate?
+    
+    var silence:AKBooster?
+    
+    var akMicTracker:AKMicrophoneTracker
+    
+    var audioKitStarted:Bool = false
     
     init(bufferSize:Int = 8192) {
         self.samplesBufferSize = bufferSize
         mic = AKMicrophone()
+        silence = AKBooster(mic, gain:0)
         akMicTracker = AKMicrophoneTracker()
     }
     
     func start(){
+        if !audioKitStarted {
+            AudioKit.output = silence
+            AudioKit.start()
+        }
         installTap(mic)
         akMicTracker.start()
-        
     }
     
     func stop() {
-        akMicTracker.stop()
         mic.avAudioNode.removeTap(onBus: 0)
         mic.stop()
     }
@@ -71,17 +79,9 @@ class MicrophoneTracker {
             self.trackedSamples.append(elements[i])
         }
         
-//        var rms: Float = 0
-//        
-//        for i in 0 ..< Int(self.samplesBufferSize) {
-//            rms += pow(Float((buffer.floatChannelData?.pointee[i]) ?? 0.0), 2)
-//        }
-//
-//        self.trackedAmplitude = 20*log10(rms); //calculate decibels
-        
         self.trackedAmplitude = akMicTracker.amplitude
         self.trackedFrequency = akMicTracker.frequency
-//
+
         delegate!.microphoneTracker(trackedSamples: self.trackedSamples, samplesBufferSize: self.samplesBufferSize, trackedFrequency:self.trackedFrequency, trackedAmplitude:self.trackedAmplitude)
         
     }

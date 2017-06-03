@@ -45,7 +45,7 @@
 //    var positiveDistace = true
 //    
 //    fileprivate var timer: Timer?
-//    var mic = MicrophoneTracker(bufferSize: 8192)
+//    var mic:MicrophoneTracker?
 //    
 //    var trackedAmplitude:Double = 0
 //    var trackedFrequency:Double = 0
@@ -53,11 +53,12 @@
 //    
 //    
 //    init(){
-//        mic.delegate = self
+//        mic = MicrophoneTracker(bufferSize: 1024)
+//        mic?.delegate = self
 //    }
 //    
 //    func start(){
-//        mic.start()
+//        mic?.start()
 //        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self,
 //                                     selector: #selector(analyse),
 //                                     userInfo: nil,
@@ -66,7 +67,7 @@
 //    }
 //    
 //    func stop(){
-//        mic.stop()
+//        mic?.stop()
 //        timer?.invalidate()
 //    }
 //    
