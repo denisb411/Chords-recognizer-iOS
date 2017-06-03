@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TrainViewController:UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TrainViewController:UIViewController, UITableViewDelegate, UITableViewDataSource, MicrophoneTrackerDelegate {
     
     @IBOutlet var tableView: UITableView?
     @IBOutlet weak var microphoneVolumeProgressView: UIProgressView!
@@ -27,6 +27,12 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
     var remainingTime = 0
     var timerMicrophoneVolume:Timer?
     
+    var mic = MicrophoneTracker()
+    
+    var trackedAmplitude:Double = 0
+    var trackedFrequency:Double = 0
+    var trackedSamples = [Float]()
+    var samplesBufferSize = 0
     
     //MARK: TableView configuration
     
@@ -68,7 +74,16 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        mic.delegate = self
+        mic.start()
+    }
     
+    override func viewWillDisappear(_ animated: Bool){
+        mic.stop()
+        self.timerConstantTrainingIndicator?.invalidate()
+        self.timerConstantTrainingIndicator = nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,7 +133,7 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
         
         selectAChordLabel.isHidden = true
         
-        if ChromaticViewController.tuner.tracker.amplitude < 0.05 {
+        if self.trackedAmplitude < 0.05 {
             return
         }
         
@@ -130,13 +145,6 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
                                                               userInfo: nil,
                                                               repeats: true)
         
-        let newFftData = Array((0 ... (ChromaticViewController.tuner.fft.fftDataSize - 1)).map {
-            
-            index -> Int in
-            let tempArray = (ChromaticViewController.tuner.fft.fftData[index] * (pow(10,16)))
-            return ( Int(tempArray))
-            
-        })
         
         let json: [String: Any] = ["chordType": selected!.chordNumber,
                                    "fftData": newFftData]
@@ -188,12 +196,15 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.timerConstantTrainingIndicator?.invalidate()
-        self.timerConstantTrainingIndicator = nil
+    
+    func microphoneTracker(trackedSamples: [Float], samplesBufferSize: Int, trackedFrequency:Double, trackedAmplitude:Double) {
+        
+        self.trackedSamples = trackedSamples
+        self.trackedAmplitude = trackedAmplitude
+        self.trackedFrequency = trackedFrequency
+        self.samplesBufferSize = samplesBufferSize
         
     }
-    
     
     
     func countDown() {
