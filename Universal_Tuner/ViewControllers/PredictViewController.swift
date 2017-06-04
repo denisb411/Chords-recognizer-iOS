@@ -144,18 +144,18 @@ class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
                         
                         if let predictedChord = JsonData["predictedY"] as? Int {
                             
-//                            DispatchQueue.main.async() {
-//                                var j = 0
-//                                for i in 0...(ChromaticViewController.chords.count - 1) {
-//                                    let chord = ChromaticViewController.chords[i]
-//                                    if chord.chordNumber == predictedChord {
-//                                        j = i
-//                                        break
-//                                    }
-//                                }
-//                                let chord = ChromaticViewController.chords[j]
-//                                self.predictedLabel.text = chord.name
-//                            }
+                            DispatchQueue.main.async() {
+                                var j = 0
+                                for i in 0...(ChromaticViewController.chords.count - 1) {
+                                    let chord = ChromaticViewController.chords[i]
+                                    if chord.chordNumber == predictedChord {
+                                        j = i
+                                        break
+                                    }
+                                }
+                                let chord = ChromaticViewController.chords[j]
+                                self.predictedLabel.text = chord.name
+                            }
                             
                         }
                         

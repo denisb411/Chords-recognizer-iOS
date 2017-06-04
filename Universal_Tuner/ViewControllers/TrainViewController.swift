@@ -16,7 +16,7 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var selectAChordLabel: UILabel!
     var selected:Chord?
-//    let chords = ChromaticViewController.chords
+    let chords = ChromaticViewController.chords
     
     @IBOutlet weak var trainingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var constantTrainingSwitch: UISwitch!
@@ -45,8 +45,8 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 cell.accessoryType = UITableViewCellAccessoryType.checkmark
-//                let chord = chords[indexPath.row]
-//                selected = chord
+                let chord = chords[indexPath.row]
+                selected = chord
                 nothingSelected = false
                 
             } else {
@@ -63,14 +63,14 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1//chords.count
+        return chords.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let row = indexPath.row
-//        let chord = chords[row]
+        let row = indexPath.row
+        let chord = chords[row]
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: nil)
-        cell.textLabel!.text = "test"//chord.name
+        cell.textLabel!.text = chord.name
         return cell
     }
     
@@ -99,29 +99,24 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
         
         selectAChordLabel.isHidden = true
         
-        constantTrainingSwitch.addTarget(self, action: "switchIsChanged:", for: UIControlEvents.valueChanged)
-        
-        timerMicrophoneVolume = Timer.scheduledTimer(timeInterval: 0.01, target: self,
-                                                     selector: #selector(setMicrophoneVolume),
-                                                     userInfo: nil,
-                                                     repeats: true)
+//        constantTrainingSwitch.addTarget(self, action: "switchIsChanged:", for: UIControlEvents.valueChanged)
     }
-    
-    @objc func switchIsChanged(_ mySwitch: UISwitch) {
-        if mySwitch.isOn {
-            if nothingSelected {
-                selectAChordLabel.isHidden = false
-            }
-            timerConstantTraining = Timer.scheduledTimer(timeInterval: 1, target: self,
-                                                         selector: #selector(constantTraining),
-                                                         userInfo: nil,
-                                                         repeats: true)
-        } else {
-            self.timerConstantTraining?.invalidate()
-            self.timerConstantTraining = nil
-            selectAChordLabel.isHidden = true
-        }
-    }
+//    
+//    @objc func switchIsChanged(_ mySwitch: UISwitch) {
+//        if mySwitch.isOn {
+//            if nothingSelected {
+//                selectAChordLabel.isHidden = false
+//            }
+//            timerConstantTraining = Timer.scheduledTimer(timeInterval: 1, target: self,
+//                                                         selector: #selector(constantTraining),
+//                                                         userInfo: nil,
+//                                                         repeats: true)
+//        } else {
+//            self.timerConstantTraining?.invalidate()
+//            self.timerConstantTraining = nil
+//            selectAChordLabel.isHidden = true
+//        }
+//    }
     
     
     
@@ -134,7 +129,7 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
         
         selectAChordLabel.isHidden = true
         
-        if self.trackedAmplitude < 0.05 {
+        if self.trackedAmplitude < 0.1 {
             return
         }
         
@@ -145,6 +140,8 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
                                                               selector: #selector(self.countDown),
                                                               userInfo: nil,
                                                               repeats: true)
+        print ("tracked samples count:")
+        print (self.trackedSamples.count)
         
         let json: [String: Any] = ["chordType": selected!.chordNumber,
                                    "samples": self.trackedSamples]
@@ -197,11 +194,26 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
     
     func microphoneTracker(trackedSamples: [Float], samplesBufferSize: Int, trackedFrequency:Double, trackedAmplitude:Double) {
         
-        self.trackedSamples = trackedSamples
-        self.trackedAmplitude = trackedAmplitude
-        self.trackedFrequency = trackedFrequency
-        self.samplesBufferSize = samplesBufferSize
+        DispatchQueue.main.async() {
         
+            self.trackedSamples = trackedSamples
+            self.trackedAmplitude = trackedAmplitude
+            self.trackedFrequency = trackedFrequency
+            self.samplesBufferSize = samplesBufferSize
+            
+            var microphoneVolume = (self.trackedAmplitude * 10)
+            if (microphoneVolume > 1) { microphoneVolume = 1}
+            self.microphoneVolumeProgressView.progress = Float(microphoneVolume)
+            
+            if self.constantTrainingSwitch.isOn {
+                if self.nothingSelected {
+                    self.selectAChordLabel.isHidden = false
+                }
+                self.constantTraining()
+            } else {
+                self.selectAChordLabel.isHidden = true
+            }
+        }
     }
     
     
@@ -214,15 +226,6 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
             self.timerConstantTrainingIndicator?.invalidate()
             self.timerConstantTrainingIndicator = nil
         }
-        
-    }
-    
-    
-    func setMicrophoneVolume() {
-            
-        var microphoneVolume = self.trackedAmplitude * 10
-        if (microphoneVolume > 1) { microphoneVolume = 1}
-        self.microphoneVolumeProgressView.progress = Float(microphoneVolume)
         
     }
     

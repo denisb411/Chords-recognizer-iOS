@@ -35,8 +35,6 @@ class MicrophoneTracker {
     
     var akMicTracker:AKMicrophoneTracker
     
-    var audioKitStarted:Bool = false
-    
     init(bufferSize:Int = 8192) {
         self.samplesBufferSize = bufferSize
         mic = AKMicrophone()
@@ -45,10 +43,8 @@ class MicrophoneTracker {
     }
     
     func start(){
-        if !audioKitStarted {
-            AudioKit.output = silence
-            AudioKit.start()
-        }
+        AudioKit.output = silence
+        AudioKit.start()
         installTap(mic)
         akMicTracker.start()
     }
@@ -56,6 +52,7 @@ class MicrophoneTracker {
     func stop() {
         mic.avAudioNode.removeTap(onBus: 0)
         mic.stop()
+        //AudioKit.stop()  // <--- if this is called installTap doesn't work anymore.
     }
     
     func installTap(_ input:AKMicrophone) {
@@ -65,8 +62,6 @@ class MicrophoneTracker {
             strongSelf.signalTracker(didReceivedBuffer: buffer, atTime: time)
         }
         
-        input.start()
-        
     }
     
     
@@ -74,6 +69,7 @@ class MicrophoneTracker {
         
         let elements = UnsafeBufferPointer(start: buffer.floatChannelData?[0], count:self.samplesBufferSize)
         
+        self.trackedSamples.removeAll()
         
         for i in 0..<self.samplesBufferSize {
             self.trackedSamples.append(elements[i])
