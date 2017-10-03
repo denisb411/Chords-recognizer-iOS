@@ -22,6 +22,7 @@ class TestsTableViewController:UITableViewController {
     @IBOutlet weak var selectedDataPercentageLabel: UILabel!
     @IBOutlet weak var selectedBufferSizeLabel: UILabel!
     @IBOutlet weak var selectedTestCaseLabel: UILabel!
+    @IBOutlet weak var selectedDatasetLabel: UILabel!
     
     
     @IBOutlet weak var decibelsTrainingSwitch: UISwitch!
@@ -101,6 +102,8 @@ class TestsTableViewController:UITableViewController {
         TestCase(name:"Case 4", value:4),
     ]
     
+    static var selectedDataset = "samples_steelGuitar_test02Em.csv"
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = "Tests"
@@ -118,6 +121,7 @@ class TestsTableViewController:UITableViewController {
         self.selectedDataPercentageLabel.text = TestsTableViewController.selectedDataPercentage.name
         self.selectedBufferSizeLabel.text = TestsTableViewController.selectedBufferSize.name
         self.selectedTestCaseLabel.text = TestsTableViewController.selectedTestCase.name
+        self.selectedDatasetLabel.text = TestsTableViewController.selectedDataset
 
     }
     
@@ -141,11 +145,11 @@ class TestsTableViewController:UITableViewController {
     
     @IBAction func makeTestButtonPressed(_ sender: Any) {
         
-        let json: [String: Any] = ["instrument": TestsTableViewController.selectedInstrument.value,
-                                   "dataPercentage": TestsTableViewController.selectedDataPercentage.value,
+        let json: [String: Any] = ["dataPercentage": TestsTableViewController.selectedDataPercentage.value,
                                    "bufferSize": TestsTableViewController.selectedBufferSize.value,
                                    "testCase":TestsTableViewController.selectedTestCase.value,
-                                   "trainWithDecibels": self.decibelsTraining]
+                                   "trainWithDecibels": self.decibelsTraining,
+                                   "dataset": TestsTableViewController.selectedDataset]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
@@ -153,7 +157,7 @@ class TestsTableViewController:UITableViewController {
             print (printData)
         }
         
-        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/testCase/"
+        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/test/case/"
         
         print (urlAdressAppendFftData)
         
@@ -206,6 +210,72 @@ class TestsTableViewController:UITableViewController {
         }).resume()
         
     }
+    
+    
+    @IBAction func testCurrentTrainedModelPressed(_ sender: Any) {
+        
+        let json: [String: Any] = ["messageType": "testCurrentTrainedModel"]
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        
+        if let printData = jsonData {
+            print (printData)
+        }
+        
+        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/test/trained_model/"
+        
+        print (urlAdressAppendFftData)
+        
+        
+        let url = URL(string: urlAdressAppendFftData)
+        let session = URLSession.shared
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        
+        if let printData = jsonData {
+            request.httpBody = printData
+        } else {
+            return
+        }
+        
+        session.dataTask(with: request, completionHandler:
+            { data, response, error in
+                
+                if error != nil {
+                    AlertMessages(self).showServerError(error as! URLError)
+                    return
+                }
+                print ("****** response = \(response)")
+                
+                
+                if let content = data {
+                    do {
+                        var completeMessage:String = "Test - Current model hit rate:\n\n"
+                        let JsonData = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers ) as AnyObject
+                        
+                        let serverMessage = ServerExchange.readTestMessage(JsonData as! NSDictionary)
+                        
+                        completeMessage = completeMessage + "\(serverMessage)"
+                        
+                        let alert = UIAlertController(title: "Model test", message: "\(completeMessage)", preferredStyle: UIAlertControllerStyle.alert)
+                        let ok = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil)
+                        alert.addAction(ok)
+                        self.present(alert, animated: true, completion: nil)
+                        
+                    } catch {}
+                    
+                }
+                
+                //Read the JSON
+                if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
+                    print("POST:\(postString)")
+                    
+                }
+        }).resume()
+        
+    }
+    
 
         
 }

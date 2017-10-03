@@ -36,7 +36,7 @@ class CachedDataViewController:UITableViewController {
             print (printData)
         }
         
-        let urlAdressClearCachedData = "http://" + ServerExchange.urlAddress + "/api/clearCachedData/"
+        let urlAdressClearCachedData = "http://" + ServerExchange.urlAddress + "/api/clear/cached_data/"
         
         let url = URL(string: urlAdressClearCachedData)
         let session = URLSession.shared
@@ -81,7 +81,7 @@ class CachedDataViewController:UITableViewController {
             print (printData)
         }
         
-        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/testModels/"
+        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/test/case/"
         
         print (urlAdressAppendFftData)
         

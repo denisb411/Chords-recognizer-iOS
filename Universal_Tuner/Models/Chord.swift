@@ -12,7 +12,7 @@ class Chord: NSObject {
     
     let name:String
     let chordNumber:Int
-    static var chordCount:Int = 1
+    static var chordCount:Int = 0
     
     
     init(name:String){

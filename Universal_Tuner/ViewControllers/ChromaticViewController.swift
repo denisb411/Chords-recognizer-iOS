@@ -101,7 +101,7 @@ class ChromaticViewController: UIViewController, MicrophoneTrackerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        mic = MicrophoneTracker(bufferSize: 1024)
+        mic = MicrophoneTracker(bufferSize: 16384)
         mic?.delegate = self
         mic?.start()
     }

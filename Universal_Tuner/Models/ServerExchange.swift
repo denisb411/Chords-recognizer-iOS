@@ -16,7 +16,7 @@ class ServerExchange {
 
     static func CheckServerStatus() -> Bool {
 
-        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/checkServerStatus/"
+        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/check/server_status/"
         
         let json: [String: Any] = ["messageType": "checkServerStatus"]
         
@@ -63,60 +63,66 @@ class ServerExchange {
         
         if let model = JsonData["OneVsRest"] as? AnyObject {
             if let message = model["message"] as? AnyObject {
-                completeMessage = completeMessage + "\(message) \n\n"
+                completeMessage = completeMessage + "\(message) \n"
             }
         }
         if let model = JsonData["LogisticRegression"] as? AnyObject {
             if let message = model["message"] as? AnyObject {
-                completeMessage = completeMessage + "\(message) \n\n"
+                completeMessage = completeMessage + "\(message) \n"
             }
         }
         if let model = JsonData["MultinomialNB"] as? AnyObject {
             if let message = model["message"] as? AnyObject {
-                completeMessage = completeMessage + "\(message) \n\n"
+                completeMessage = completeMessage + "\(message) \n"
             }
         }
         if let model = JsonData["OneVsOne"] as? AnyObject {
             if let message = model["message"] as? AnyObject {
-                completeMessage = completeMessage + "\(message) \n\n"
+                completeMessage = completeMessage + "\(message) \n"
             }
         }
         
         if let model = JsonData["OneVsOne"] as? AnyObject {
             if let message = model["message"] as? AnyObject {
-                completeMessage = completeMessage + "\(message) \n\n"
+                completeMessage = completeMessage + "\(message) \n"
             }
         }
         
         if let model = JsonData["DecisionTreeClassifier"] as? AnyObject {
             if let message = model["message"] as? AnyObject {
-                completeMessage = completeMessage + "\(message) \n\n"
+                completeMessage = completeMessage + "\(message) \n"
             }
         }
         
         if let model = JsonData["KNeighborsClassifier"] as? AnyObject {
             if let message = model["message"] as? AnyObject {
-                completeMessage = completeMessage + "\(message) \n\n"
+                completeMessage = completeMessage + "\(message) \n"
             }
         }
         
         if let model = JsonData["LinearDiscriminantAnalysis"] as? AnyObject {
             if let message = model["message"] as? AnyObject {
-                completeMessage = completeMessage + "\(message) \n\n"
+                completeMessage = completeMessage + "\(message) \n"
             }
         }
         
         if let model = JsonData["GaussianNB"] as? AnyObject {
             if let message = model["message"] as? AnyObject {
-                completeMessage = completeMessage + "\(message) \n\n"
+                completeMessage = completeMessage + "\(message) \n"
             }
         }
         
         if let model = JsonData["MLPClassifier"] as? AnyObject {
             if let message = model["message"] as? AnyObject {
-                completeMessage = completeMessage + "\(message) \n\n"
+                completeMessage = completeMessage + "\(message) \n"
             }
         }
+        
+//        if let model = JsonData["Winner"] as? AnyObject {
+//            if let message = model["message"] as? AnyObject {
+//                completeMessage = completeMessage + "\(message) \n"
+//            }
+//        }
         
         return completeMessage
     }

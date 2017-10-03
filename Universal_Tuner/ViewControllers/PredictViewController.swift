@@ -18,32 +18,44 @@ class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
     
     @IBOutlet weak var constantPredictIndicator: UIActivityIndicatorView!
 
-    fileprivate var timerConstantPredict: Timer?
-    fileprivate var timerMicrophoneVolume:Timer?
     fileprivate var timerConstantPredictIndicator: Timer?
-    var remainingTime = 0
+    var remainingTime = 0.0
     
     @IBOutlet weak var micPlotView: UIView!
     
-    var mic:MicrophoneTracker?
+    var mic = MicrophoneTracker(bufferSize: 20480)
     var trackedAmplitude:Double = 0
     var trackedFrequency:Double = 0
     var trackedSamples = [Float]()
+    var samplesBufferSize = 0
+    var recordingAudio = false
     
     func microphoneTracker(trackedSamples: [Float], samplesBufferSize: Int, trackedFrequency:Double, trackedAmplitude:Double) {
         
-        self.trackedSamples = trackedSamples
-        self.trackedAmplitude = trackedAmplitude
-        self.trackedFrequency = trackedFrequency
+        DispatchQueue.main.async() {
+            
+            self.trackedSamples = trackedSamples
+            self.trackedAmplitude = trackedAmplitude
+            self.trackedFrequency = trackedFrequency
+            self.samplesBufferSize = samplesBufferSize
+            
+            self.setMicrophoneVolume()
+            
+            if self.recordingAudio == false {
+                self.constantPredict()
+                
+            }
+            
+        }
         
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        mic = MicrophoneTracker(bufferSize:1024)
+        mic = MicrophoneTracker()
         
-        mic?.delegate = self
-        mic?.start()
+        mic.delegate = self
+        mic.start()
     }
     
     
@@ -52,58 +64,33 @@ class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
         constantPredictIndicator.isHidden = true
         constantPredictIndicator.stopAnimating()
         
-        
-        timerConstantPredict = Timer.scheduledTimer(timeInterval: 0.3, target: self,
-                                     selector: #selector(autoPredict),
-                                     userInfo: nil,
-                                     repeats: true)
-        
-        timerMicrophoneVolume = Timer.scheduledTimer(timeInterval: 0.01, target: self,
-                                                     selector: #selector(setMicrophoneVolume),
-                                                     userInfo: nil,
-                                                     repeats: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.timerConstantPredict?.invalidate()
-        self.timerConstantPredict = nil
-        mic?.stop()
-    }
-    
-    @objc func autoPredict() {
-        
-        self.tick()
-        
-    }
-    
-    func setupPlot(_ mic:AKNode) {
-        let plot = AKNodeOutputPlot(mic, frame: CGRect(x:0,y:0,width:900,height:micPlotView!.bounds.height))
-        plot.plotType = .buffer
-        plot.shouldFill = true
-        plot.shouldMirror = true
-        plot.color = AKColor.blue
-        micPlotView!.addSubview(plot)
+        mic.stop()
     }
     
     //*********************** CONSTANT PREDICT ***************************
     
-    func tick() {
+    func constantPredict() {
         
-        if self.trackedAmplitude < 0.1 {
+        if self.trackedAmplitude < 0.12 {
             return
         }
         
         constantPredictIndicator.isHidden = false
         constantPredictIndicator.startAnimating()
-        remainingTime = 1
-        timerConstantPredictIndicator = Timer.scheduledTimer(timeInterval: 1, target: self,
+        remainingTime = 0.5
+        timerConstantPredictIndicator = Timer.scheduledTimer(timeInterval: 0.1, target: self,
                                                               selector: #selector(self.countDown),
                                                               userInfo: nil,
                                                               repeats: true)
+        self.recordingAudio = true
+        
         
         // prepare json data
         
-        let json: [String: Any] = ["samples": self.trackedSamples]
+        let json: [String: Any] = ["sample": self.trackedSamples]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
@@ -111,7 +98,7 @@ class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
             print (printData)
         }
         
-        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/predictData/"
+        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/predict/"
         
         print (urlAdressAppendFftData)
         
@@ -142,7 +129,7 @@ class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
                     do {
                         let JsonData = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers ) as! NSDictionary
                         
-                        if let predictedChord = JsonData["predictedY"] as? Int {
+                        if let predictedChord = JsonData["predicted_class"] as? Int {
                             
                             DispatchQueue.main.async() {
                                 var j = 0
@@ -194,12 +181,13 @@ class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
     
     func countDown() {
         
-        self.remainingTime -= 1
+        self.remainingTime -= 0.1
         if (self.remainingTime < 0) {
             constantPredictIndicator.stopAnimating()
             constantPredictIndicator.isHidden = true
             self.timerConstantPredictIndicator?.invalidate()
             self.timerConstantPredictIndicator = nil
+            recordingAudio = false
         }
         
     }

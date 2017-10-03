@@ -4,11 +4,13 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "7027B267743229C5FA659F72BC80546BAC1DDE16" : 9223372036854775807,
     "B88F9BD2FB101A5D49C2598A686EB333A52F1FB9" : 9223372036854775807,
     "92CBA65579F61C75FEC665D01E78C47FFFAA6B01" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F981CFB8-2607-4782-A60F-34EC1458DC9E",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "7027B267743229C5FA659F72BC80546BAC1DDE16" : "",
     "B88F9BD2FB101A5D49C2598A686EB333A52F1FB9" : "Universal_Tuner\/",
     "92CBA65579F61C75FEC665D01E78C47FFFAA6B01" : "AudioKit\/"
   },
@@ -16,6 +18,11 @@
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Universal_Tuner.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/denisb411\/Chords-recognizer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7027B267743229C5FA659F72BC80546BAC1DDE16"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/denisb411\/AudioKit.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",

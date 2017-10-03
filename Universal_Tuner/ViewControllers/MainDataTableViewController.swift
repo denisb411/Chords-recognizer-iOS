@@ -64,7 +64,7 @@ class MainDataTableViewController:UITableViewController {
             print (printData)
         }
         
-        let urlAddress = "http://" + ServerExchange.urlAddress + "/api/appendToMainData/"
+        let urlAddress = "http://" + ServerExchange.urlAddress + "/api/append/main_data/"
         
         let url = URL(string: urlAddress)
         let session = URLSession.shared
@@ -141,7 +141,7 @@ class MainDataTableViewController:UITableViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] (_) in
             let textField = alert!.textFields![0] // Force unwrapping because we know it exists.
             
-            let json: [String: Any] = ["fileName": textField.text]
+            let json: [String: Any] = ["backupFile": textField.text]
         
             let jsonData = try? JSONSerialization.data(withJSONObject: json)
             
@@ -149,7 +149,7 @@ class MainDataTableViewController:UITableViewController {
                 print (printData)
             }
             
-            let urlAdressClearCachedData = "http://" + ServerExchange.urlAddress + "/api/createBackup/"
+            let urlAdressClearCachedData = "http://" + ServerExchange.urlAddress + "/api/create/backup/"
             
             let url = URL(string: urlAdressClearCachedData)
             let session = URLSession.shared
@@ -203,7 +203,7 @@ class MainDataTableViewController:UITableViewController {
             print (printData)
         }
         
-        let urlAdressClearCachedData = "http://" + ServerExchange.urlAddress + "/api/clearMainData/"
+        let urlAdressClearCachedData = "http://" + ServerExchange.urlAddress + "/api/clear/main_data/"
         
         let url = URL(string: urlAdressClearCachedData)
         let session = URLSession.shared

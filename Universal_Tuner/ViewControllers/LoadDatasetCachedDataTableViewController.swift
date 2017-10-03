@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BackupDataTableViewController:UITableViewController {
+class LoadDatasetCachedDataTableViewController:UITableViewController {
     
     var backupList = Array<String>()
     
@@ -27,7 +27,7 @@ class BackupDataTableViewController:UITableViewController {
             print (printData)
         }
         
-        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/list/backup/"
+        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/list/backups/"
         
         print (urlAdressAppendFftData)
         
@@ -87,7 +87,7 @@ class BackupDataTableViewController:UITableViewController {
         cell.textLabel!.text = backupFileName
         return cell
     }
-
+    
     //MARK: TableView configuration
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -95,15 +95,15 @@ class BackupDataTableViewController:UITableViewController {
             
             let backupFile = backupList[indexPath.row]
             
-            var refreshAlert = UIAlertController(title: "Use BackupData as MainData", message: "Are you sure you want to use \(backupFile) as MainData? Current MainData will be backed up anyway.", preferredStyle: UIAlertControllerStyle.alert)
-    
+            var refreshAlert = UIAlertController(title: "Use BackupData as MainData", message: "Are you sure you want to use \(backupFile) as CachedData? Current CachedData will be overwritten", preferredStyle: UIAlertControllerStyle.alert)
+            
             refreshAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
                 print("Cancel Pressed")
             }))
             
             refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                 
-                let done = self.useBackupDataAsMainData(file:backupFile)
+                let done = self.useBackupDataAsCachedData(file:backupFile)
                 
                 
             }))
@@ -111,17 +111,17 @@ class BackupDataTableViewController:UITableViewController {
             present(refreshAlert, animated: true, completion: nil)
             
             tableView.deselectRow(at: indexPath, animated: true)
-
+            
+        }
+        
+        
     }
-
     
-    }
-
-    func useBackupDataAsMainData(file:String) -> Bool {
+    func useBackupDataAsCachedData(file:String) -> Bool {
         
         var done = false
         
-        let json: [String: Any] = ["backupFile": file]
+        let json: [String: Any] = ["fileName": file]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
@@ -129,7 +129,7 @@ class BackupDataTableViewController:UITableViewController {
             print (printData)
         }
         
-        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/use/backup/"
+        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/useBackupDataAsCachedData/"
         
         print (urlAdressAppendFftData)
         
@@ -145,8 +145,6 @@ class BackupDataTableViewController:UITableViewController {
         } else {
             return done
         }
-        
-        request.timeoutInterval = 60.0
         
         session.dataTask(with: request, completionHandler:
             { data, response, error in
@@ -164,36 +162,20 @@ class BackupDataTableViewController:UITableViewController {
                         
                         done = true
                         
-                        var completeMessage:String = "\n Current model's hit rate of MainData:\n\n"
-                        let JsonData = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers ) as AnyObject
-                        
-                        let serverMessage = ServerExchange.readTestMessage(JsonData as! NSDictionary)
-                        
-                        completeMessage = completeMessage + "\(serverMessage)"
-                        
-                        let alert = UIAlertController(title: "Models test", message: "\(completeMessage)", preferredStyle: UIAlertControllerStyle.alert)
-                        let ok = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil)
-                        alert.addAction(ok)
-                        self.present(alert, animated: true, completion: nil)
-                        
-                        self.loadBackupDataList()
+                        AlertMessages(self).showSuccessfulAlert()
                         
                     } catch {}
                     
                 }
                 
                 //Read the JSON
-                if let strongResponse = response {
-                    if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
-                        print("POST:\(postString)")
-                        
-                    }
+                if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
+                    print("POST:\(postString)")
+                    
                 }
-                
-                
         }).resume()
         
         return done
     }
-
+    
 }

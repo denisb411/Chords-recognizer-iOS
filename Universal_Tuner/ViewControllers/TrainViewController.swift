@@ -21,13 +21,14 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var trainingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var constantTrainingSwitch: UISwitch!
     var nothingSelected = true
+    var recordingAudio=false
     
     var timerConstantTrainingIndicator:Timer?
     var timerConstantTraining:Timer?
     var remainingTime = 0
     var timerMicrophoneVolume:Timer?
     
-    var mic:MicrophoneTracker?
+    var mic = MicrophoneTracker(bufferSize: 20480)
     
     var trackedAmplitude:Double = 0
     var trackedFrequency:Double = 0
@@ -75,13 +76,13 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        mic = MicrophoneTracker(bufferSize: 8192)
-        mic?.delegate = self
-        mic?.start()
+        mic = MicrophoneTracker(bufferSize: 20480)
+        mic.delegate = self
+        mic.start()
     }
     
     override func viewWillDisappear(_ animated: Bool){
-        mic?.stop()
+        mic.stop()
         self.timerConstantTrainingIndicator?.invalidate()
         self.timerConstantTrainingIndicator = nil
     }
@@ -101,23 +102,6 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
         
 //        constantTrainingSwitch.addTarget(self, action: "switchIsChanged:", for: UIControlEvents.valueChanged)
     }
-//    
-//    @objc func switchIsChanged(_ mySwitch: UISwitch) {
-//        if mySwitch.isOn {
-//            if nothingSelected {
-//                selectAChordLabel.isHidden = false
-//            }
-//            timerConstantTraining = Timer.scheduledTimer(timeInterval: 1, target: self,
-//                                                         selector: #selector(constantTraining),
-//                                                         userInfo: nil,
-//                                                         repeats: true)
-//        } else {
-//            self.timerConstantTraining?.invalidate()
-//            self.timerConstantTraining = nil
-//            selectAChordLabel.isHidden = true
-//        }
-//    }
-    
     
     
     func constantTraining() {
@@ -140,11 +124,13 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
                                                               selector: #selector(self.countDown),
                                                               userInfo: nil,
                                                               repeats: true)
+        
+        self.recordingAudio = true
         print ("tracked samples count:")
         print (self.trackedSamples.count)
         
         let json: [String: Any] = ["chordType": selected!.chordNumber,
-                                   "samples": self.trackedSamples]
+                                   "sample": self.trackedSamples]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
@@ -152,7 +138,7 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
             print (printData)
         }
         
-        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/appendToCachedData/"
+        let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/append/cached_data/"
         
         
         let url = URL(string: urlAdressAppendFftData)
@@ -201,21 +187,34 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
             self.trackedFrequency = trackedFrequency
             self.samplesBufferSize = samplesBufferSize
             
-            var microphoneVolume = (self.trackedAmplitude * 10)
-            if (microphoneVolume > 1) { microphoneVolume = 1}
-            self.microphoneVolumeProgressView.progress = Float(microphoneVolume)
             
-            if self.constantTrainingSwitch.isOn {
-                if self.nothingSelected {
-                    self.selectAChordLabel.isHidden = false
-                }
-                self.constantTraining()
-            } else {
-                self.selectAChordLabel.isHidden = true
-            }
+            self.setMicrophoneVolume()
+            
+            self.updateViewStatus()
         }
     }
     
+    
+    func updateViewStatus(){
+        
+        if self.constantTrainingSwitch.isOn && self.recordingAudio == false{
+            if self.nothingSelected {
+                self.selectAChordLabel.isHidden = false
+            }
+            self.constantTraining()
+        } else {
+            self.selectAChordLabel.isHidden = true
+        }
+        
+    }
+    
+    func setMicrophoneVolume() {
+        
+        var microphoneVolume = self.trackedAmplitude * 10
+        if (microphoneVolume > 1) { microphoneVolume = 1}
+        self.microphoneVolumeProgressView?.progress = Float(microphoneVolume)
+        
+    }
     
     func countDown() {
         
@@ -225,8 +224,21 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
             trainingIndicator.isHidden = true
             self.timerConstantTrainingIndicator?.invalidate()
             self.timerConstantTrainingIndicator = nil
+            self.recordingAudio = false
         }
         
+    }
+    
+    @objc func switchIsChanged(_ mySwitch: UISwitch) {
+        if mySwitch.isOn {
+            timerConstantTraining = Timer.scheduledTimer(timeInterval: 1, target: self,
+                                                         selector: #selector(constantTraining),
+                                                         userInfo: nil,
+                                                         repeats: true)
+        } else {
+            self.timerConstantTraining?.invalidate()
+            self.timerConstantTraining = nil
+        }
     }
     
     

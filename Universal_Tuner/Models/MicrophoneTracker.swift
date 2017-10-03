@@ -35,7 +35,7 @@ class MicrophoneTracker {
     
     var akMicTracker:AKMicrophoneTracker
     
-    init(bufferSize:Int = 8192) {
+    init(bufferSize:Int = 20480) {
         self.samplesBufferSize = bufferSize
         mic = AKMicrophone()
         silence = AKBooster(mic, gain:0)
