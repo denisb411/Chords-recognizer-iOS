@@ -12,12 +12,14 @@ class Chord: NSObject {
     
     let name:String
     let chordNumber:Int
+    let image:String
     static var chordCount:Int = 0
     
     
-    init(name:String){
+    init(name:String, image:String){
         self.name = name
         self.chordNumber = Chord.chordCount
+        self.image = image
         Chord.chordCount += 1
     }
 }

@@ -20,18 +20,9 @@ class BackupDataTableViewController:UITableViewController {
     func loadBackupDataList() {
         
         let json: [String: Any] = ["messageType": "listBackups"]
-        
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        
-        if let printData = jsonData {
-            print (printData)
-        }
-        
         let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/list/backup/"
-        
         print (urlAdressAppendFftData)
-        
-        
         let url = URL(string: urlAdressAppendFftData)
         let session = URLSession.shared
         var request = URLRequest(url: url!)
@@ -52,28 +43,19 @@ class BackupDataTableViewController:UITableViewController {
                     return
                 }
                 print ("****** response = \(response)")
-                
-                
                 if let content = data {
                     do {
                         let JsonData = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers ) as! NSArray
-                        
                         self.backupList = ServerExchange.readBackupListMessage(JsonData)
-                        
-                        
                         self.tableView.reloadData()
-                        
                     } catch {}
-                    
                 }
-                
                 //Read the JSON
                 if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
                     print("POST:\(postString)")
                     
                 }
         }).resume()
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,13 +71,12 @@ class BackupDataTableViewController:UITableViewController {
     }
 
     //MARK: TableView configuration
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             
             let backupFile = backupList[indexPath.row]
             
-            var refreshAlert = UIAlertController(title: "Use BackupData as MainData", message: "Are you sure you want to use \(backupFile) as MainData? Current MainData will be backed up anyway.", preferredStyle: UIAlertControllerStyle.alert)
+            var refreshAlert = UIAlertController(title: "Use BackupData as MainData", message: "Are you sure you want to use \(backupFile) as MainData?", preferredStyle: UIAlertControllerStyle.alert)
     
             refreshAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
                 print("Cancel Pressed")
@@ -103,37 +84,23 @@ class BackupDataTableViewController:UITableViewController {
             
             refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                 
-                let done = self.useBackupDataAsMainData(file:backupFile)
-                
+                self.useBackupDataAsMainData(file:backupFile)
                 
             }))
             
             present(refreshAlert, animated: true, completion: nil)
             
             tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     }
 
-    
-    }
-
-    func useBackupDataAsMainData(file:String) -> Bool {
+    func useBackupDataAsMainData(file:String) {
         
         var done = false
-        
         let json: [String: Any] = ["backupFile": file]
-        
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        
-        if let printData = jsonData {
-            print (printData)
-        }
-        
         let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/use/backup/"
-        
-        print (urlAdressAppendFftData)
-        
-        
         let url = URL(string: urlAdressAppendFftData)
         let session = URLSession.shared
         var request = URLRequest(url: url!)
@@ -143,43 +110,23 @@ class BackupDataTableViewController:UITableViewController {
         if let printData = jsonData {
             request.httpBody = printData
         } else {
-            return done
+            return
         }
         
         request.timeoutInterval = 60.0
-        
         session.dataTask(with: request, completionHandler:
             { data, response, error in
                 
                 if error != nil {
                     AlertMessages(self).showServerError(error as! URLError)
                     print ("Error: \(error)")
-                    done = false
                 }
                 print ("****** response = \(response)")
-                
-                
                 if let content = data {
                     do {
-                        
-                        done = true
-                        
-                        var completeMessage:String = "\n Current model's hit rate of MainData:\n\n"
-                        let JsonData = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers ) as AnyObject
-                        
-                        let serverMessage = ServerExchange.readTestMessage(JsonData as! NSDictionary)
-                        
-                        completeMessage = completeMessage + "\(serverMessage)"
-                        
-                        let alert = UIAlertController(title: "Models test", message: "\(completeMessage)", preferredStyle: UIAlertControllerStyle.alert)
-                        let ok = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil)
-                        alert.addAction(ok)
-                        self.present(alert, animated: true, completion: nil)
-                        
+                        AlertMessages(self).showSuccessfulAlert()
                         self.loadBackupDataList()
-                        
                     } catch {}
-                    
                 }
                 
                 //Read the JSON
@@ -189,11 +136,9 @@ class BackupDataTableViewController:UITableViewController {
                         
                     }
                 }
-                
-                
         }).resume()
         
-        return done
+        return
     }
 
 }

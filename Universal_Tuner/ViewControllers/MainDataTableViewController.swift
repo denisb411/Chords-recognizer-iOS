@@ -18,9 +18,10 @@ class MainDataTableViewController:UITableViewController {
         }
     }
     
+    
     @IBAction func clearMainDataPressed(_ sender: Any) {
         
-        var refreshAlert = UIAlertController(title: "Append", message: "Are you sure? Current MainData will be backed up anyway.", preferredStyle: UIAlertControllerStyle.alert)
+        var refreshAlert = UIAlertController(title: "Append", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
             print("Cancel Pressed")
@@ -31,12 +32,11 @@ class MainDataTableViewController:UITableViewController {
         }))
         
         present(refreshAlert, animated: true, completion: nil)
-
     }
     
     @IBAction func appendButtonPressed(_ sender: Any) {
         
-        var refreshAlert = UIAlertController(title: "Append", message: "Are you sure? Current MainData will be backed up anyway.", preferredStyle: UIAlertControllerStyle.alert)
+        var refreshAlert = UIAlertController(title: "Append", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
             print("Cancel Pressed")
@@ -45,19 +45,13 @@ class MainDataTableViewController:UITableViewController {
         refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
             self.sendMessageAppend()
         }))
-        
-        
-        
         present(refreshAlert, animated: true, completion: nil)
-        
     }
     
     
     func sendMessageAppend () {
         
         let json: [String: Any] = ["messageType": "syncCachedDataWithMainData"]
-        
-        
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
         if let printData = jsonData {
@@ -116,7 +110,6 @@ class MainDataTableViewController:UITableViewController {
                 if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
                     print("POST:\(postString)")
                 }
-                
         }).resume()
         
     }
@@ -124,30 +117,19 @@ class MainDataTableViewController:UITableViewController {
     
     @IBAction func createBackupPressed(_ sender: Any) {
 
-        //1. Create the alert controller.
         let alert = UIAlertController(title: "Backup MainData", message: "Insert a backup title", preferredStyle: .alert)
-        
-        //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
             textField.text = ""
         }
-        
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
             print("Cancel Pressed")
             return
         }))
         
-        // 3. Grab the value from the text field, and print it when the user clicks OK.
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] (_) in
-            let textField = alert!.textFields![0] // Force unwrapping because we know it exists.
-            
+            let textField = alert!.textFields![0]
             let json: [String: Any] = ["backupFile": textField.text]
-        
             let jsonData = try? JSONSerialization.data(withJSONObject: json)
-            
-            if let printData = jsonData {
-                print (printData)
-            }
             
             let urlAdressClearCachedData = "http://" + ServerExchange.urlAddress + "/api/create/backup/"
             
@@ -186,17 +168,13 @@ class MainDataTableViewController:UITableViewController {
                     
             }).resume()
         }))
-        
-        // 4. Present the alert.
+
         self.present(alert, animated: true, completion: nil)
-    
-        }
+    }
     
     func sendClearMainData() {
         
         let json: [String: Any] = ["messageType": "clearMainData"]
-        
-        
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
         if let printData = jsonData {
@@ -204,7 +182,6 @@ class MainDataTableViewController:UITableViewController {
         }
         
         let urlAdressClearCachedData = "http://" + ServerExchange.urlAddress + "/api/clear/main_data/"
-        
         let url = URL(string: urlAdressClearCachedData)
         let session = URLSession.shared
         var request = URLRequest(url: url!)
@@ -232,7 +209,6 @@ class MainDataTableViewController:UITableViewController {
                 }
                 
                 print ("****** response = \(response)")
-                
                 //Read the JSON
                 if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
                     print("POST:\(postString)")

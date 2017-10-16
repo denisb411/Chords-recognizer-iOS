@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aurelius Prochazka. All rights reserved.
 //
 /// Plot the output from any node in an signal processing graph
+
 import AudioKit
 
 @IBDesignable

@@ -13,7 +13,6 @@
 		D40E3C511E816C43009B4B40 /* Universal_TunerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E3C501E816C43009B4B40 /* Universal_TunerTests.swift */; };
 		D40E3C5C1E816C43009B4B40 /* Universal_TunerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E3C5B1E816C43009B4B40 /* Universal_TunerUITests.swift */; };
 		D44E25931EC1ECAB00F62CD4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D44E25821EC1ECAB00F62CD4 /* Info.plist */; };
-		D44E25B11EC1EE6700F62CD4 /* CustomAKFFTTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25A01EC1EE6700F62CD4 /* CustomAKFFTTap.swift */; };
 		D44E25B21EC1EE6700F62CD4 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25A11EC1EE6700F62CD4 /* Note.swift */; };
 		D44E25B31EC1EE6700F62CD4 /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25A21EC1EE6700F62CD4 /* Pitch.swift */; };
 		D44E25B41EC1EE6700F62CD4 /* ServerExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25A31EC1EE6700F62CD4 /* ServerExchange.swift */; };
@@ -22,29 +21,25 @@
 		D44E25B71EC1EE6700F62CD4 /* DevelopmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25A71EC1EE6700F62CD4 /* DevelopmentViewController.swift */; };
 		D44E25B81EC1EE6700F62CD4 /* PredictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25A81EC1EE6700F62CD4 /* PredictViewController.swift */; };
 		D44E25B91EC1EE6700F62CD4 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25A91EC1EE6700F62CD4 /* SettingsTableViewController.swift */; };
-		D44E25BA1EC1EE6700F62CD4 /* StandardGuitarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25AA1EC1EE6700F62CD4 /* StandardGuitarViewController.swift */; };
 		D44E25BC1EC1EE6700F62CD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25AD1EC1EE6700F62CD4 /* AppDelegate.swift */; };
-		D44E25BD1EC1EE6700F62CD4 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25AE1EC1EE6700F62CD4 /* NoteButton.swift */; };
 		D44E25BE1EC1EE6700F62CD4 /* PointerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25AF1EC1EE6700F62CD4 /* PointerView.swift */; };
 		D44E25BF1EC1EE6700F62CD4 /* StableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25B01EC1EE6700F62CD4 /* StableView.swift */; };
 		D44E25C11EC1EED900F62CD4 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25C01EC1EED900F62CD4 /* Chord.swift */; };
 		D44E25C31EC1F6F700F62CD4 /* CachedDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25C21EC1F6F700F62CD4 /* CachedDataViewController.swift */; };
 		D44E25C51EC1F76D00F62CD4 /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25C41EC1F76D00F62CD4 /* TrainViewController.swift */; };
 		D44E25C71EC29ADF00F62CD4 /* MainDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25C61EC29ADF00F62CD4 /* MainDataTableViewController.swift */; };
-		D44E25CA1EC3EDDB00F62CD4 /* ChordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25C91EC3EDDB00F62CD4 /* ChordsTableViewController.swift */; };
-		D44E25CC1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25CB1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift */; };
 		D44E25D01EC513AF00F62CD4 /* AlertMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25CF1EC513AF00F62CD4 /* AlertMessages.swift */; };
 		D44E25D21EC606F600F62CD4 /* BackupDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E25D11EC606F600F62CD4 /* BackupDataTableViewController.swift */; };
 		D482076C1EE6DE50003DC425 /* DatasetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482076B1EE6DE50003DC425 /* DatasetTableViewController.swift */; };
-		D482076E1EE6ED1E003DC425 /* LoadDatasetCachedDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D482076D1EE6ED1E003DC425 /* LoadDatasetCachedDataTableViewController.swift */; };
-		D4A134671EE0E6FA007DD1EE /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4A134661EE0E6FA007DD1EE /* AudioKit.framework */; };
-		D4A134681EE0E6FA007DD1EE /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4A134661EE0E6FA007DD1EE /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4A1346A1EE1F650007DD1EE /* MicrophoneTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A134691EE1F650007DD1EE /* MicrophoneTracker.swift */; };
 		D4A134701EE1F6A9007DD1EE /* BufferSizeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1346B1EE1F6A9007DD1EE /* BufferSizeTableViewController.swift */; };
 		D4A134711EE1F6A9007DD1EE /* DataPercentageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1346C1EE1F6A9007DD1EE /* DataPercentageTableViewController.swift */; };
 		D4A134721EE1F6A9007DD1EE /* InstrumentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1346D1EE1F6A9007DD1EE /* InstrumentTableViewController.swift */; };
 		D4A134731EE1F6A9007DD1EE /* TestCaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1346E1EE1F6A9007DD1EE /* TestCaseTableViewController.swift */; };
 		D4A134741EE1F6A9007DD1EE /* TestsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1346F1EE1F6A9007DD1EE /* TestsTableViewController.swift */; };
+		D4C54C8B1F8DA1C000B7C7C8 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C54C8A1F8DA1BF00B7C7C8 /* AudioKit.framework */; };
+		D4C54C8C1F8DA1C000B7C7C8 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4C54C8A1F8DA1BF00B7C7C8 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4C54C8E1F8E59FD00B7C7C8 /* PracticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C54C8D1F8E59FD00B7C7C8 /* PracticeTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +66,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D4A134681EE0E6FA007DD1EE /* AudioKit.framework in Embed Frameworks */,
+				D4C54C8C1F8DA1C000B7C7C8 /* AudioKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,7 +86,6 @@
 		D40E3C5B1E816C43009B4B40 /* Universal_TunerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Universal_TunerUITests.swift; sourceTree = "<group>"; };
 		D40E3C5D1E816C43009B4B40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D44E25821EC1ECAB00F62CD4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D44E25A01EC1EE6700F62CD4 /* CustomAKFFTTap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAKFFTTap.swift; sourceTree = "<group>"; };
 		D44E25A11EC1EE6700F62CD4 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		D44E25A21EC1EE6700F62CD4 /* Pitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pitch.swift; sourceTree = "<group>"; };
 		D44E25A31EC1EE6700F62CD4 /* ServerExchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerExchange.swift; sourceTree = "<group>"; };
@@ -100,28 +94,25 @@
 		D44E25A71EC1EE6700F62CD4 /* DevelopmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentViewController.swift; sourceTree = "<group>"; };
 		D44E25A81EC1EE6700F62CD4 /* PredictViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictViewController.swift; sourceTree = "<group>"; };
 		D44E25A91EC1EE6700F62CD4 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		D44E25AA1EC1EE6700F62CD4 /* StandardGuitarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardGuitarViewController.swift; sourceTree = "<group>"; };
 		D44E25AD1EC1EE6700F62CD4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D44E25AE1EC1EE6700F62CD4 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
 		D44E25AF1EC1EE6700F62CD4 /* PointerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerView.swift; sourceTree = "<group>"; };
 		D44E25B01EC1EE6700F62CD4 /* StableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StableView.swift; sourceTree = "<group>"; };
 		D44E25C01EC1EED900F62CD4 /* Chord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		D44E25C21EC1F6F700F62CD4 /* CachedDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedDataViewController.swift; sourceTree = "<group>"; };
 		D44E25C41EC1F76D00F62CD4 /* TrainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
 		D44E25C61EC29ADF00F62CD4 /* MainDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDataTableViewController.swift; sourceTree = "<group>"; };
-		D44E25C91EC3EDDB00F62CD4 /* ChordsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordsTableViewController.swift; sourceTree = "<group>"; };
-		D44E25CB1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAKNodeOutputPlot.swift; sourceTree = "<group>"; };
 		D44E25CF1EC513AF00F62CD4 /* AlertMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertMessages.swift; sourceTree = "<group>"; };
 		D44E25D11EC606F600F62CD4 /* BackupDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupDataTableViewController.swift; sourceTree = "<group>"; };
 		D482076B1EE6DE50003DC425 /* DatasetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasetTableViewController.swift; sourceTree = "<group>"; };
-		D482076D1EE6ED1E003DC425 /* LoadDatasetCachedDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadDatasetCachedDataTableViewController.swift; sourceTree = "<group>"; };
-		D4A134661EE0E6FA007DD1EE /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
 		D4A134691EE1F650007DD1EE /* MicrophoneTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophoneTracker.swift; sourceTree = "<group>"; };
 		D4A1346B1EE1F6A9007DD1EE /* BufferSizeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BufferSizeTableViewController.swift; path = TestsViewControllers/BufferSizeTableViewController.swift; sourceTree = "<group>"; };
 		D4A1346C1EE1F6A9007DD1EE /* DataPercentageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataPercentageTableViewController.swift; path = TestsViewControllers/DataPercentageTableViewController.swift; sourceTree = "<group>"; };
 		D4A1346D1EE1F6A9007DD1EE /* InstrumentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InstrumentTableViewController.swift; path = TestsViewControllers/InstrumentTableViewController.swift; sourceTree = "<group>"; };
 		D4A1346E1EE1F6A9007DD1EE /* TestCaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestCaseTableViewController.swift; path = TestsViewControllers/TestCaseTableViewController.swift; sourceTree = "<group>"; };
 		D4A1346F1EE1F6A9007DD1EE /* TestsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestsTableViewController.swift; path = TestsViewControllers/TestsTableViewController.swift; sourceTree = "<group>"; };
+		D4C54C851F8D9DA900B7C7C8 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
+		D4C54C8A1F8DA1BF00B7C7C8 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "Frameworks/AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
+		D4C54C8D1F8E59FD00B7C7C8 /* PracticeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4A134671EE0E6FA007DD1EE /* AudioKit.framework in Frameworks */,
+				D4C54C8B1F8DA1C000B7C7C8 /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,14 +141,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39CAE75E93BF25F981599C13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4C54C851F8D9DA900B7C7C8 /* AudioKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D40E3C2F1E816C43009B4B40 = {
 			isa = PBXGroup;
 			children = (
-				D4A134661EE0E6FA007DD1EE /* AudioKit.framework */,
+				D4C54C8A1F8DA1BF00B7C7C8 /* AudioKit.framework */,
 				D40E3C3A1E816C43009B4B40 /* Universal_Tuner */,
 				D40E3C4F1E816C43009B4B40 /* Universal_TunerTests */,
 				D40E3C5A1E816C43009B4B40 /* Universal_TunerUITests */,
 				D40E3C391E816C43009B4B40 /* Products */,
+				39CAE75E93BF25F981599C13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,13 +206,11 @@
 		D44E259F1EC1EE6700F62CD4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D44E25A01EC1EE6700F62CD4 /* CustomAKFFTTap.swift */,
 				D44E25A11EC1EE6700F62CD4 /* Note.swift */,
 				D44E25A21EC1EE6700F62CD4 /* Pitch.swift */,
 				D44E25A31EC1EE6700F62CD4 /* ServerExchange.swift */,
 				D44E25A41EC1EE6700F62CD4 /* Tuner.swift */,
 				D44E25C01EC1EED900F62CD4 /* Chord.swift */,
-				D44E25CB1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift */,
 				D4A134691EE1F650007DD1EE /* MicrophoneTracker.swift */,
 			);
 			path = Models;
@@ -223,16 +221,14 @@
 			children = (
 				D4A23FB01ED719B200DD1A50 /* TestsViewControllers */,
 				D40E3C3F1E816C43009B4B40 /* Main.storyboard */,
+				D4C54C8D1F8E59FD00B7C7C8 /* PracticeTableViewController.swift */,
 				D44E25A61EC1EE6700F62CD4 /* ChromaticViewController.swift */,
 				D44E25A71EC1EE6700F62CD4 /* DevelopmentViewController.swift */,
-				D482076D1EE6ED1E003DC425 /* LoadDatasetCachedDataTableViewController.swift */,
 				D44E25A81EC1EE6700F62CD4 /* PredictViewController.swift */,
 				D44E25A91EC1EE6700F62CD4 /* SettingsTableViewController.swift */,
-				D44E25AA1EC1EE6700F62CD4 /* StandardGuitarViewController.swift */,
 				D44E25C21EC1F6F700F62CD4 /* CachedDataViewController.swift */,
 				D44E25C41EC1F76D00F62CD4 /* TrainViewController.swift */,
 				D44E25C61EC29ADF00F62CD4 /* MainDataTableViewController.swift */,
-				D44E25C91EC3EDDB00F62CD4 /* ChordsTableViewController.swift */,
 				D44E25D11EC606F600F62CD4 /* BackupDataTableViewController.swift */,
 			);
 			path = ViewControllers;
@@ -242,7 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				D44E25AD1EC1EE6700F62CD4 /* AppDelegate.swift */,
-				D44E25AE1EC1EE6700F62CD4 /* NoteButton.swift */,
 				D44E25AF1EC1EE6700F62CD4 /* PointerView.swift */,
 				D44E25B01EC1EE6700F62CD4 /* StableView.swift */,
 				D44E25CF1EC513AF00F62CD4 /* AlertMessages.swift */,
@@ -406,10 +401,8 @@
 				D44E25B91EC1EE6700F62CD4 /* SettingsTableViewController.swift in Sources */,
 				D44E25C31EC1F6F700F62CD4 /* CachedDataViewController.swift in Sources */,
 				D4A134721EE1F6A9007DD1EE /* InstrumentTableViewController.swift in Sources */,
-				D482076E1EE6ED1E003DC425 /* LoadDatasetCachedDataTableViewController.swift in Sources */,
 				D44E25C71EC29ADF00F62CD4 /* MainDataTableViewController.swift in Sources */,
 				D44E25B61EC1EE6700F62CD4 /* ChromaticViewController.swift in Sources */,
-				D44E25BA1EC1EE6700F62CD4 /* StandardGuitarViewController.swift in Sources */,
 				D482076C1EE6DE50003DC425 /* DatasetTableViewController.swift in Sources */,
 				D44E25D01EC513AF00F62CD4 /* AlertMessages.swift in Sources */,
 				D4A134701EE1F6A9007DD1EE /* BufferSizeTableViewController.swift in Sources */,
@@ -417,19 +410,16 @@
 				D4A134741EE1F6A9007DD1EE /* TestsTableViewController.swift in Sources */,
 				D44E25BC1EC1EE6700F62CD4 /* AppDelegate.swift in Sources */,
 				D44E25BF1EC1EE6700F62CD4 /* StableView.swift in Sources */,
-				D44E25CA1EC3EDDB00F62CD4 /* ChordsTableViewController.swift in Sources */,
 				D44E25C51EC1F76D00F62CD4 /* TrainViewController.swift in Sources */,
 				D44E25C11EC1EED900F62CD4 /* Chord.swift in Sources */,
 				D44E25B81EC1EE6700F62CD4 /* PredictViewController.swift in Sources */,
-				D44E25CC1EC3FF1C00F62CD4 /* CustomAKNodeOutputPlot.swift in Sources */,
 				D44E25D21EC606F600F62CD4 /* BackupDataTableViewController.swift in Sources */,
 				D4A134711EE1F6A9007DD1EE /* DataPercentageTableViewController.swift in Sources */,
 				D44E25B31EC1EE6700F62CD4 /* Pitch.swift in Sources */,
-				D44E25BD1EC1EE6700F62CD4 /* NoteButton.swift in Sources */,
 				D44E25B21EC1EE6700F62CD4 /* Note.swift in Sources */,
 				D44E25B71EC1EE6700F62CD4 /* DevelopmentViewController.swift in Sources */,
+				D4C54C8E1F8E59FD00B7C7C8 /* PracticeTableViewController.swift in Sources */,
 				D44E25B51EC1EE6700F62CD4 /* Tuner.swift in Sources */,
-				D44E25B11EC1EE6700F62CD4 /* CustomAKFFTTap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,10 +571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/AudioKit-iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks/AudioKit-iOS";
 				INFOPLIST_FILE = Universal_Tuner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -600,10 +587,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/AudioKit-iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks/AudioKit-iOS";
 				INFOPLIST_FILE = Universal_Tuner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

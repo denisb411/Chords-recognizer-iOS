@@ -14,10 +14,8 @@ import UIKit
 class PointerView: UIView {
     
     var arrowDegree = 90.0
-    
     var arrowLayer = CAShapeLayer()
     let arrow = CAShapeLayer()
-
     var counterColor: UIColor = UIColor.red
     
     override init(frame: CGRect = .zero) {
@@ -26,12 +24,9 @@ class PointerView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
     }
     
     public override func draw(_ rect: CGRect) {
-        
-        
         //Drawing a dot at the center
         
         let dotRadius = max(bounds.width/15, bounds.height/15)
@@ -52,9 +47,7 @@ class PointerView: UIView {
         path.stroke()
         path.fill()
         
-        
         arrowLayer.frame = CGRect(x:bounds.width/2, y: bounds.height/2, width: bounds.width, height: bounds.height)
-        
         
         arrow.path = UIBezierPath(rect: CGRect(x: 0, y:0 - 1, width: -bounds.width/2, height: 1)).cgPath
         arrow.backgroundColor = UIColor.red.cgColor
@@ -70,18 +63,13 @@ class PointerView: UIView {
     
     
     func drawPointerAt (_ degreeToDraw: Double) {
-        
         UIView.animate(withDuration: 5, animations: {
             self.arrow.setAffineTransform(CGAffineTransform(rotationAngle:PointerView.radians(degreeToDraw)))
-            
         })
-        
     }
     
     static func radians(_ degrees: Double) -> CGFloat {
-        
         let k = M_PI / 180
-        
         return CGFloat(degrees * k)
     }
 }

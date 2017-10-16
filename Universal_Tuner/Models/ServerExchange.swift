@@ -11,19 +11,13 @@ import Foundation
 class ServerExchange {
 
 	static var urlAddress:String = "localhost:8001"
-    
     static var serverStatus:Bool = false
-
+    
     static func CheckServerStatus() -> Bool {
-
         let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/check/server_status/"
-        
         let json: [String: Any] = ["messageType": "checkServerStatus"]
-        
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        
-        if let printData = jsonData {        
-        
+        if let printData = jsonData {
             let url = URL(string: urlAdressAppendFftData)
             let session = URLSession.shared
             var request = URLRequest(url: url!)
@@ -31,30 +25,22 @@ class ServerExchange {
             request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
             
             request.httpBody = jsonData
-            
             session.dataTask(with: request, completionHandler:
                 { data, response, error in
                     
                     if error != nil {
                         self.serverStatus = false
                         return
+                    } else {
+                        self.serverStatus = true
                     }
-                    
-                    
-                    self.serverStatus = true
-                    
             }).resume()
-            
         }
         return self.serverStatus
     }
 
-    
-
     static func setServerUrl (_ url:String) {
-
     	ServerExchange.urlAddress = url
-
     }
     
     static func readTestMessage(_ JsonData:NSDictionary) -> String {
@@ -118,29 +104,16 @@ class ServerExchange {
             }
         }
         
-//        if let model = JsonData["Winner"] as? AnyObject {
-//            if let message = model["message"] as? AnyObject {
-//                completeMessage = completeMessage + "\(message) \n"
-//            }
-//        }
         
         return completeMessage
     }
     
     
     static func readBackupListMessage(_ JsonData:NSArray) -> Array<String> {
-        
         var backupList = Array<String>()
-        
         for file in JsonData {
             backupList.append(file as! String)
         }
-        
-        print (JsonData)
-        
         return backupList
-        
-        
     }
-    
 }
