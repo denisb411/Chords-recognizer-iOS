@@ -32,7 +32,6 @@ class AlertMessages {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         let ok = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil)
         alert.addAction(ok)
-        
         controller.present(alert, animated: true, completion: nil)
         return
     }
@@ -43,5 +42,4 @@ class AlertMessages {
         alert.addAction(ok)
         self.controller.present(alert, animated: true, completion: nil)
     }
-    
 }

@@ -15,13 +15,10 @@ protocol TunerDelegate {
 
 class Tuner {
     var delegate: TunerDelegate?
-    
     let minimum = Double(50)
     let maximum = Double(2000)
-    
     var negativeDistance = false
     var positiveDistace = true
-    
     fileprivate var timer: Timer?
     var mic: AKMicrophone
     var tracker: AKFrequencyTracker
@@ -43,7 +40,6 @@ class Tuner {
                                      selector: #selector(analyse),
                                      userInfo: nil,
                                      repeats: true)
-        
     }
     
     func stop(){
@@ -53,9 +49,7 @@ class Tuner {
     }
     
     @objc func analyse() {
-        
         self.tick()
-        
     }
     
     func tick() {

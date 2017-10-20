@@ -18,30 +18,22 @@ class MainDataTableViewController:UITableViewController {
         }
     }
     
-    
     @IBAction func clearMainDataPressed(_ sender: Any) {
-        
         var refreshAlert = UIAlertController(title: "Append", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.alert)
-        
         refreshAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
             print("Cancel Pressed")
         }))
-        
         refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
             self.sendClearMainData()
         }))
-        
         present(refreshAlert, animated: true, completion: nil)
     }
     
     @IBAction func appendButtonPressed(_ sender: Any) {
-        
         var refreshAlert = UIAlertController(title: "Append", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.alert)
-        
         refreshAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
             print("Cancel Pressed")
         }))
-        
         refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
             self.sendMessageAppend()
         }))
@@ -50,16 +42,9 @@ class MainDataTableViewController:UITableViewController {
     
     
     func sendMessageAppend () {
-        
         let json: [String: Any] = ["messageType": "syncCachedDataWithMainData"]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        
-        if let printData = jsonData {
-            print (printData)
-        }
-        
         let urlAddress = "http://" + ServerExchange.urlAddress + "/api/append/main_data/"
-        
         let url = URL(string: urlAddress)
         let session = URLSession.shared
         var request = URLRequest(url: url!)
@@ -74,7 +59,6 @@ class MainDataTableViewController:UITableViewController {
         
         session.dataTask(with: request, completionHandler:
             { data, response, error in
-                
                 if error != nil {
                     let alert = UIAlertController(title: "Server error", message: "Error \(error)", preferredStyle: UIAlertControllerStyle.alert)
                     let ok = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil)
@@ -90,33 +74,23 @@ class MainDataTableViewController:UITableViewController {
                     do {
                         var completeMessage:String = "\n Current model's hit rate of MainData:\n\n"
                         let JsonData = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers ) as AnyObject
-                        
                         let serverMessage = ServerExchange.readTestMessage(JsonData as! NSDictionary)
-                        
                         completeMessage = completeMessage + "\(serverMessage)"
-                        
                         let alert = UIAlertController(title: "Models test", message: "\(completeMessage)", preferredStyle: UIAlertControllerStyle.alert)
                         let ok = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil)
                         alert.addAction(ok)
                         self.present(alert, animated: true, completion: nil)
-                        
                     } catch {}
-                    
                 }
-                
                 print ("****** response = \(response)")
-                
                 //Read the JSON
                 if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
                     print("POST:\(postString)")
                 }
         }).resume()
-        
     }
     
-    
     @IBAction func createBackupPressed(_ sender: Any) {
-
         let alert = UIAlertController(title: "Backup MainData", message: "Insert a backup title", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.text = ""
@@ -125,14 +99,11 @@ class MainDataTableViewController:UITableViewController {
             print("Cancel Pressed")
             return
         }))
-        
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] (_) in
             let textField = alert!.textFields![0]
             let json: [String: Any] = ["backupFile": textField.text]
             let jsonData = try? JSONSerialization.data(withJSONObject: json)
-            
             let urlAdressClearCachedData = "http://" + ServerExchange.urlAddress + "/api/create/backup/"
-            
             let url = URL(string: urlAdressClearCachedData)
             let session = URLSession.shared
             var request = URLRequest(url: url!)
@@ -147,7 +118,6 @@ class MainDataTableViewController:UITableViewController {
             
             session.dataTask(with: request, completionHandler:
                 { data, response, error in
-                    
                     if error != nil {
                         let alert = UIAlertController(title: "Server error", message: "Error \(error)", preferredStyle: UIAlertControllerStyle.alert)
                         let ok = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil)
@@ -158,29 +128,19 @@ class MainDataTableViewController:UITableViewController {
                     } else {
                         AlertMessages(self).showSuccessfulAlert()
                     }
-                    
                     print ("****** response = \(response)")
-                    
                     //Read the JSON
                     if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
                         print("POST:\(postString)")
                     }
-                    
             }).resume()
         }))
-
         self.present(alert, animated: true, completion: nil)
     }
     
     func sendClearMainData() {
-        
         let json: [String: Any] = ["messageType": "clearMainData"]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        
-        if let printData = jsonData {
-            print (printData)
-        }
-        
         let urlAdressClearCachedData = "http://" + ServerExchange.urlAddress + "/api/clear/main_data/"
         let url = URL(string: urlAdressClearCachedData)
         let session = URLSession.shared
@@ -196,7 +156,6 @@ class MainDataTableViewController:UITableViewController {
         
         session.dataTask(with: request, completionHandler:
             { data, response, error in
-                
                 if error != nil {
                     let alert = UIAlertController(title: "Server error", message: "Error \(error)", preferredStyle: UIAlertControllerStyle.alert)
                     let ok = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil)
@@ -207,16 +166,11 @@ class MainDataTableViewController:UITableViewController {
                 } else {
                     AlertMessages(self).showSuccessfulAlert()
                 }
-                
                 print ("****** response = \(response)")
                 //Read the JSON
                 if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
                     print("POST:\(postString)")
                 }
-                
         }).resume()
     }
-    
-    
-    
 }

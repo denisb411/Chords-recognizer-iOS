@@ -13,18 +13,18 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
     
 
     var selected:Chord?
-    let chords = ChromaticViewController.chords
+    let chords = Chord.chords
     var nothingSelected = true
     var recordingAudio=false
     var timerConstantTrainingIndicator:Timer?
     var timerConstantTraining:Timer?
     var remainingTime = 0
     var timerMicrophoneVolume:Timer?
-    var mic = MicrophoneTracker(bufferSize: 20480)
     var trackedAmplitude:Double = 0
     var trackedFrequency:Double = 0
     var trackedSamples = [Float]()
     var samplesBufferSize = 0
+    var mic = MicrophoneTracker()
     
     @IBOutlet var tableView: UITableView?
     @IBOutlet weak var microphoneVolumeProgressView: UIProgressView!
@@ -71,7 +71,6 @@ class TrainViewController:UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        mic = MicrophoneTracker(bufferSize: 20480)
         mic.delegate = self
         mic.start()
     }

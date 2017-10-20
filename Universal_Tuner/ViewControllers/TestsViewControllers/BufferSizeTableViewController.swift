@@ -11,29 +11,21 @@ import UIKit
 
 class BufferSizeTableViewController:UITableViewController {
     
-    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
     }
     
-    
     //MARK: Table view config
-    
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
-                
                 let BufferSize = TestsTableViewController.bufferSizes[indexPath.row]
                 TestsTableViewController.selectedBufferSize = BufferSize
                 tableView.deselectRow(at: indexPath, animated: true)
                 if let navigation = navigationController {
                     navigation.popViewController(animated: true)
                 }
-            
         }
     }
     
@@ -46,13 +38,6 @@ class BufferSizeTableViewController:UITableViewController {
         let bufferSize = TestsTableViewController.bufferSizes[row]
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: nil)
         cell.textLabel!.text = bufferSize.name
-        
-//        if bufferSize.value == TestsTableViewController.selectedBufferSize.value {
-//            cell.accessoryType = UITableViewCellAccessoryType.checkmark
-//            tableView.deselectRow(at: indexPath, animated: true)
-//        }
-        
         return cell
     }
-    
 }

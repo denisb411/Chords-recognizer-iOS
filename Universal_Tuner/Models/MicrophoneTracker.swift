@@ -24,17 +24,20 @@ class MicrophoneTracker {
     var delegate:MicrophoneTrackerDelegate?
     var silence:AKBooster?
     var akMicTracker:AKMicrophoneTracker
+    
+    //static let microphone = MicrophoneTracker()
+    
     init(bufferSize:Int = 20480) {
         self.samplesBufferSize = bufferSize
         mic = AKMicrophone()
         silence = AKBooster(mic, gain:0)
         akMicTracker = AKMicrophoneTracker()
+        installTap(mic)
     }
     
     func start(){
         AudioKit.output = silence
         AudioKit.start()
-        installTap(mic)
         akMicTracker.start()
     }
     

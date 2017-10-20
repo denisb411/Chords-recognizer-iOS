@@ -11,30 +11,21 @@ import UIKit
 
 class TestCaseTableViewController:UITableViewController {
     
-    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
     }
     
-    
     //MARK: Table view config
-    
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
-                
                 let testCase = TestsTableViewController.testCases[indexPath.row]
                 TestsTableViewController.selectedTestCase = testCase
                 tableView.deselectRow(at: indexPath, animated: true)
-                
                 if let navigation = navigationController {
                     navigation.popViewController(animated: true)
                 }
-                
         }
     }
     
@@ -49,5 +40,4 @@ class TestCaseTableViewController:UITableViewController {
         cell.textLabel!.text = testCase.name
         return cell
     }
-    
 }

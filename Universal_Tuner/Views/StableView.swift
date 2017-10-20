@@ -25,7 +25,6 @@ class StableView: UIView {
     }
     
     public override func draw(_ rect: CGRect) {
-        
         // Drawing the circle line
         let roundLayer = CAShapeLayer()
         let center = CGPoint(x:bounds.width/2, y: bounds.height/2)
@@ -34,7 +33,6 @@ class StableView: UIView {
         let startAngle: CGFloat = PointerView.radians(180)
         let endAngle: CGFloat = PointerView.radians(360)
         let counterColor = UIColor.red
-        
         var path = UIBezierPath(arcCenter: center,
                                 radius: radius/2 - arcWidth/2,
                                 startAngle: startAngle,
@@ -45,18 +43,14 @@ class StableView: UIView {
         roundLayer.strokeColor = counterColor.cgColor
         roundLayer.lineWidth = arcWidth
         roundLayer.fillColor = nil
-        
         self.layer.addSublayer(roundLayer)
-        
         //*** Drawing the dashes ***
         //Drawing the thin dashes
-        
         // init vars for later use
         var nTicks = 0
         var tickWidth = 0.0
         var gapWidth = 0.0
         radius += 20
-        
         path = UIBezierPath(arcCenter: center,
                             radius: radius/2 - arcWidth/2,
                             startAngle: startAngle,
@@ -65,13 +59,10 @@ class StableView: UIView {
         
         let strokeColor = UIColor.black.cgColor
         let roundThinLayer = CAShapeLayer()
-        
         // number of short ticks to draw
         nTicks = 151
-        
         // thickness of short ticks
         tickWidth = 0.5
-        
         // calculate the gap between ticks
         gapWidth = ((M_PI * Double(radius) / 2) - (tickWidth * Double(nTicks))) / Double(nTicks - 1)
         roundThinLayer.path             = path.cgPath
@@ -80,29 +71,21 @@ class StableView: UIView {
         roundThinLayer.fillColor        = UIColor.clear.cgColor
         roundThinLayer.lineDashPattern  = [ tickWidth as NSNumber, gapWidth as NSNumber ]
         roundThinLayer.lineDashPhase    = CGFloat(tickWidth / Double(2))
-        
         self.layer.addSublayer(roundThinLayer)
-        
         //Drawing the thick dashes
-        
         radius += 20
         path = UIBezierPath(arcCenter: center,
                             radius: radius/2 - arcWidth/2,
                             startAngle: startAngle,
                             endAngle: endAngle,
                             clockwise: true)
-        
         let roundThickLayer = CAShapeLayer()
-        
         // number of tall ticks to draw
         nTicks = 7
-        
         // thickness of tall ticks
         tickWidth = 1.5
-        
         // calculate the gap between ticks
         gapWidth = ((M_PI * Double(radius) / 2) - (tickWidth * Double(nTicks))) / Double(nTicks - 1)
-        
         roundThickLayer.path            = path.cgPath
         roundThickLayer.strokeColor     = strokeColor
         roundThickLayer.lineWidth       = 40
@@ -111,5 +94,4 @@ class StableView: UIView {
         roundThickLayer.lineDashPhase   = CGFloat(tickWidth / Double(2))
         self.layer.addSublayer(roundThickLayer)
     }
-    
 }

@@ -20,20 +20,9 @@ class DatasetTableViewController:UITableViewController {
     }
     
     func loadBackupDataList() {
-        
         let json: [String: Any] = ["messageType": "listBackups"]
-        
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        
-        if let printData = jsonData {
-            print (printData)
-        }
-        
         let urlAdressAppendFftData = "http://" + ServerExchange.urlAddress + "/api/list/backup/"
-        
-        print (urlAdressAppendFftData)
-        
-        
         let url = URL(string: urlAdressAppendFftData)
         let session = URLSession.shared
         var request = URLRequest(url: url!)
@@ -48,34 +37,24 @@ class DatasetTableViewController:UITableViewController {
         
         session.dataTask(with: request, completionHandler:
             { data, response, error in
-                
                 if error != nil {
                     print ("Error: \(error)")
                     return
                 }
                 print ("****** response = \(response)")
-                
-                
                 if let content = data {
                     do {
                         let JsonData = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers ) as! NSArray
-                        
                         self.backupList = ServerExchange.readBackupListMessage(JsonData)
-                        
-                        
                         self.tableView.reloadData()
-                        
                     } catch {}
-                    
                 }
-                
                 //Read the JSON
                 if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
                     print("POST:\(postString)")
                     
                 }
         }).resume()
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,23 +70,14 @@ class DatasetTableViewController:UITableViewController {
     }
     
     //MARK: TableView configuration
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
-            
             let backupFile = backupList[indexPath.row]
-            
             TestsTableViewController.selectedDataset = backupFile
-            
             tableView.deselectRow(at: indexPath, animated: true)
-            
             if let navigation = navigationController {
                 navigation.popViewController(animated: true)
             }
-            
         }
-        
-        
     }
-    
 }

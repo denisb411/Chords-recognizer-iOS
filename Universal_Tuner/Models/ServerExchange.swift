@@ -27,7 +27,6 @@ class ServerExchange {
             request.httpBody = jsonData
             session.dataTask(with: request, completionHandler:
                 { data, response, error in
-                    
                     if error != nil {
                         self.serverStatus = false
                         return
@@ -44,9 +43,7 @@ class ServerExchange {
     }
     
     static func readTestMessage(_ JsonData:NSDictionary) -> String {
-        
         var completeMessage:String = ""
-        
         if let model = JsonData["OneVsRest"] as? AnyObject {
             if let message = model["message"] as? AnyObject {
                 completeMessage = completeMessage + "\(message) \n"
@@ -103,11 +100,8 @@ class ServerExchange {
                 completeMessage = completeMessage + "\(message) \n"
             }
         }
-        
-        
         return completeMessage
     }
-    
     
     static func readBackupListMessage(_ JsonData:NSArray) -> Array<String> {
         var backupList = Array<String>()

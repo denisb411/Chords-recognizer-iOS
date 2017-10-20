@@ -52,7 +52,7 @@ class CachedDataViewController:UITableViewController {
                 
                 print ("****** response = \(response)")
                 //Read the JSON
-                if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
+                if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as String? {
                     print("POST:\(postString)")
                 }
                 

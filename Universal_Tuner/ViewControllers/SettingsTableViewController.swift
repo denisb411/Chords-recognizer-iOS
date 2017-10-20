@@ -62,7 +62,6 @@ class SettingsTableViewController:UITableViewController{
             
             ServerExchange.setServerUrl(textField.text!)
         }))
-        
         self.present(alert, animated: true, completion: nil)
     }
     

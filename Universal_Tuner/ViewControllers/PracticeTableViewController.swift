@@ -10,13 +10,19 @@ import Foundation
 import UIKit
 import AudioKit
 
-class PracticeViewController: UITableViewController, MicrophoneTrackerDelegate {
+protocol PracticeViewControllerDelegate {
+    func setRandomChordTime(newTime: Int)
+    func getRandomChordTime() -> Int
+    func resetScore()
+}
+
+class PracticeViewController: UITableViewController, PracticeViewControllerDelegate, MicrophoneTrackerDelegate {
 
     var timerConstantPredictIndicator: Timer?
     var timerRandomChord: Timer?
     var timerDisplayResultAnalysis: Timer?
     var remainingTime = 0.0
-    var mic = MicrophoneTracker(bufferSize: 20480)
+    var mic:MicrophoneTracker!
     var trackedAmplitude:Double = 0
     var trackedFrequency:Double = 0
     var trackedSamples = [Float]()
@@ -26,7 +32,7 @@ class PracticeViewController: UITableViewController, MicrophoneTrackerDelegate {
     var randomChordTime = 20
     var remainingTimeChord = 20
     var score:Int = 0
-    var lockPredict = false
+    var currentChordImageIndex:Int = 0
     
     @IBOutlet var microphoneVolumeProgressView:UIProgressView?
     @IBOutlet weak var imageView: UIImageView!
@@ -35,23 +41,29 @@ class PracticeViewController: UITableViewController, MicrophoneTrackerDelegate {
     @IBOutlet weak var wrongLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var changingTimeLabel: UILabel!
+    @IBOutlet var backgroundView: UITableView!
+    @IBOutlet weak var previousImageButton: UIButton!
+    @IBOutlet weak var nextImageButton: UIButton!
     
     override func viewDidLoad() {
         correctLabel.isHidden = true
         wrongLabel.isHidden = true
-        mic = MicrophoneTracker()
-        mic.delegate = self
         score = 0
         generateNewRandomChord()
-        timerRandomChord = Timer.scheduledTimer(timeInterval: 1,
-                                                target: self,
-                                                selector: #selector(self.countDownChord),
-                                                userInfo: nil,
-                                                repeats: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+//        MicrophoneTracker.microphone.delegate = self
+//        MicrophoneTracker.microphone.start()
+//        backgroundView.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+        mic = MicrophoneTracker()
+        mic.delegate = self
         mic.start()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let view = segue.destination as! PracticeSettingsTableViewController
+        view.delegate = self
     }
     
     func countDownChord(){
@@ -76,6 +88,7 @@ class PracticeViewController: UITableViewController, MicrophoneTrackerDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+//        MicrophoneTracker.microphone.stop()
         mic.stop()
     }
     
@@ -94,7 +107,7 @@ class PracticeViewController: UITableViewController, MicrophoneTrackerDelegate {
     }
     
     func constantPredict() {
-        if self.trackedAmplitude < 0.15 || self.lockPredict {
+        if self.trackedAmplitude < 0.15 || self.recordingAudio {
             return
         }
         constantPredictIndicator.isHidden = false
@@ -104,7 +117,6 @@ class PracticeViewController: UITableViewController, MicrophoneTrackerDelegate {
                                                              selector: #selector(self.countDown),
                                                              userInfo: nil,
                                                              repeats: true)
-        self.lockPredict = true
         self.recordingAudio = true
         let json: [String: Any] = ["sample": self.trackedSamples]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
@@ -175,6 +187,10 @@ class PracticeViewController: UITableViewController, MicrophoneTrackerDelegate {
         var microphoneVolume = self.trackedAmplitude * 10
         if (microphoneVolume > 1) { microphoneVolume = 1}
         self.microphoneVolumeProgressView?.progress = Float(microphoneVolume)
+//        let redColor = Int((self.trackedAmplitude * 1000) + 50)
+//        let greenColor = Int((self.trackedAmplitude * 1000) + 50)
+//        print(self.trackedAmplitude)
+//        backgroundView.backgroundColor = UIColor(red: CGFloat(redColor), green: CGFloat(greenColor), blue: 255, alpha: 1)
     }
     
     func countDown() {
@@ -185,7 +201,6 @@ class PracticeViewController: UITableViewController, MicrophoneTrackerDelegate {
             self.timerConstantPredictIndicator?.invalidate()
             self.timerConstantPredictIndicator = nil
             recordingAudio = false
-            self.lockPredict = false
         }
     }
     
@@ -195,10 +210,10 @@ class PracticeViewController: UITableViewController, MicrophoneTrackerDelegate {
         remainingTimeChord = randomChordTime
         changingTimeLabel.text = String(remainingTimeChord)
         self.timerRandomChord?.invalidate()
-        for chord in ChromaticViewController.chords {
+        for chord in Chord.chords {
             if chord.chordNumber == randomNumber {
                 self.currentChord = chord
-                imageView.image = UIImage(named: self.currentChord!.image)
+                self.updateImages()
                 break
             }
         }
@@ -209,4 +224,57 @@ class PracticeViewController: UITableViewController, MicrophoneTrackerDelegate {
                                                      repeats: false)
     }
     
+    func updateImages(){
+        self.currentChordImageIndex = 0
+        self.updateButtonsColor()
+        self.setChordImage(index: self.currentChordImageIndex)
+    }
+    
+    func updateButtonsColor(){
+        previousImageButton.tintColor = UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1)
+        nextImageButton.tintColor = UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1)
+        if currentChordImageIndex == 0 {
+            previousImageButton.tintColor = UIColor.lightGray
+        }
+        if currentChordImageIndex == (currentChord!.numOfImages - 1) {
+            nextImageButton.tintColor = UIColor.lightGray
+        }
+    }
+    
+    func setChordImage(index:Int) {
+        imageView.image = UIImage(named: self.currentChord!.image[index])
+    }
+    
+    func setRandomChordTime(newTime: Int){
+        self.randomChordTime = newTime
+        self.resetScore()
+    }
+    
+    func resetScore(){
+        self.score = 0
+        generateNewRandomChord()
+    }
+    
+    func getRandomChordTime() -> Int{
+        return self.randomChordTime
+    }
+    
+    @IBAction func previousImageButtonPressed(_ sender: Any) {
+        if currentChordImageIndex == 0 {
+            return
+        }
+        currentChordImageIndex = currentChordImageIndex - 1
+        setChordImage(index:currentChordImageIndex)
+        updateButtonsColor()
+    }
+    
+    @IBAction func nextImageButtonPressed(_ sender: Any) {
+        print(currentChord!.numOfImages)
+        if currentChordImageIndex == (currentChord!.numOfImages - 1) {
+            return
+        }
+        currentChordImageIndex = currentChordImageIndex + 1
+        setChordImage(index:currentChordImageIndex)
+        updateButtonsColor()
+    }
 }

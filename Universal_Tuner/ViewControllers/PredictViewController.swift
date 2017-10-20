@@ -35,13 +35,14 @@ class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
             self.setMicrophoneVolume()
             if self.recordingAudio == false {
                 self.constantPredict()
-                
             }
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         mic = MicrophoneTracker()
+//        MicrophoneTracker.microphone.delegate = self
+//        MicrophoneTracker.microphone.start()
         mic.delegate = self
         mic.start()
     }
@@ -52,6 +53,7 @@ class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+//        MicrophoneTracker.microphone.stop()
         mic.stop()
     }
     
@@ -84,12 +86,11 @@ class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
         
         session.dataTask(with: request, completionHandler:
             { data, response, error in
-                
                 if error != nil {
                     print ("Error: \(error)")
                     return
                 }
-                print ("****** response = \(response)")
+                print ("****** response = \(String(describing: response))")
                 if let content = data {
                     do {
                         let JsonData = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers ) as! NSDictionary
@@ -97,14 +98,14 @@ class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
                         if let predictedChord = JsonData["predicted_class"] as? Int {
                             DispatchQueue.main.async() {
                                 var j = 0
-                                for i in 0...(ChromaticViewController.chords.count - 1) {
-                                    let chord = ChromaticViewController.chords[i]
+                                for i in 0...(Chord.chords.count - 1) {
+                                    let chord = Chord.chords[i]
                                     if chord.chordNumber == predictedChord {
                                         j = i
                                         break
                                     }
                                 }
-                                let chord = ChromaticViewController.chords[j]
+                                let chord = Chord.chords[j]
                                 self.predictedLabel.text = chord.name
                             }
                         }
@@ -112,7 +113,7 @@ class PredictViewController: UIViewController, MicrophoneTrackerDelegate {
                 }
                 
                 //Read the JSON
-                if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as? String {
+                if let postString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as String? {
                     print("POST:\(postString)")
 
                 }
